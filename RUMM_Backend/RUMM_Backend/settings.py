@@ -37,14 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
+    'corsheaders',
+    'Users.apps.UsersConfig',
+    'rest_framework'
 ]
 
 CORS_ORINGIN_ALLOW_ALL = True
-# CORS_ORINGIN_WHITELIST = 
+# CORS_ORINGIN_WHITELIST =
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # CORS
+    'corsheaders.middleware.CorsMiddleware',  # CORS
+    'django.middleware.csrf.CsrfViewMiddleware',  # CSRF
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
