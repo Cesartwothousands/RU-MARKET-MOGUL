@@ -6,6 +6,8 @@ from django.http.response import JsonResponse
 from Users.models import Department, User
 from Users.serializers import DepartmentSerializer, UserSerializer
 
+from django.core.files.storage import default_storage
+
 
 # Create your views here.
 
@@ -61,7 +63,7 @@ def userApi(request, id=0):
     elif request.method == 'PUT':
         user_data = JSONParser().parse(request)
         user = User.objects.get(
-            userId=user_data['UserId'])
+            UserId=user_data['UserId'])
         user_serializer = UserSerializer(
             user, data=user_data)
         if user_serializer.is_valid():
@@ -73,3 +75,11 @@ def userApi(request, id=0):
         user = User.objects.get(UserId=id)
         user.delete()
         return JsonResponse("Deleted Successfully", safe=False)
+
+
+@csrf_exempt
+def SaveFile(request):
+    file = request.FILES['uploadedFile']
+    file_name = default_storage.save(file.name, file)
+
+    return JsonResponse(file_name, safe=False)
