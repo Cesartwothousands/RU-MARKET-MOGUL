@@ -45,8 +45,12 @@ INSTALLED_APPS = [
     'rest_framework'
 ]
 
-CORS_ORINGIN_ALLOW_ALL = True
+# CORS_ORINGIN_ALLOW_ALL = True
 # CORS_ORINGIN_WHITELIST =
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",  # Replace this with your Angular development server's origin
+]
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # CORS
