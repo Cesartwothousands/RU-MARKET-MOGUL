@@ -1,1 +1,102 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.custom-navbar .container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.custom-navbar .navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.25rem 0;
+}
+
+.custom-navbar .navbar-bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    width: 100%;
+    padding: 0 0;
+}
+
+.custom-navbar .navbar-menu {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.custom-navbar .navbar-brand {
+    text-align: "left";
+}
+
+.custom-navbar .form-inline {
+    width: 100%;
+}
+
+.custom-navbar .form-control {
+    width: 100%;
+    max-width: 40vw;
+    /* 设置搜索框的最大宽度 */
+}
+
+
+.custom-navbar {
+    background-color: #d8d8d8;
+    /* Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle box shadow for a more polished look */
+}
+
+.custom-navbar .navbar-brand {
+    font-weight: 600;
+    font-size: 24px;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.custom-navbar .nav-link {
+    font-weight: 500;
+    /* Make the text bolder */
+    font-size: 18px;
+    /* Increase the font size */
+    /* text-transform: uppercase;
+    /* Make the text uppercase */
+    color: #241f1f;
+    /* 设置文本颜色为黑色 */
+    font-family: "Lucida Console", Courier, monospace;
+    /* 使用 Georgia 字体 */
+    transition: color 0.3s ease-in-out;
+    /* Add a smooth color transition */
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .nav-link:focus {
+    color: #007bff;
+    /* Change the color on hover or focus */
+}
+
+.custom-navbar .dropdown-menu {
+    background-color: #f8f9fa;
+    /* Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add box shadow for a polished look */
+    font-family: "Lucida Console", Courier, monospace;
+}
+
+.custom-navbar .dropdown-item {
+    font-weight: 500;
+    /* Make the text bolder */
+    font-size: 14px;
+    /* Increase the font size */
+    transition: background-color 0.3s ease-in-out;
+    /* Add a smooth background-color transition */
+}
+
+.custom-navbar .dropdown-item:hover,
+.custom-navbar .dropdown-item:focus {
+    background-color: #e9ecef;
+    /* Change the background color on hover or focus */
+}
