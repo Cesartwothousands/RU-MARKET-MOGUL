@@ -10,6 +10,8 @@ import { AddEditDepComponent } from './department/add-edit-dep/add-edit-dep.comp
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgGridModule } from 'ag-grid-angular';
+
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { StocksComponent } from './stocks/stocks.component';
@@ -35,7 +37,8 @@ import { SharedService } from './shared.service';
         HttpClientModule,
         FormsModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule,
+        AgGridModule
     ],
     providers: [SharedService],
     bootstrap: [AppComponent]
