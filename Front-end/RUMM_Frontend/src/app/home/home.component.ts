@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ColDef, CellClassParams } from "ag-grid-community";
+import { SharedService } from 'src/app/shared.service';
 
 
 @Component({
@@ -7,7 +8,22 @@ import { ColDef, CellClassParams } from "ag-grid-community";
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+    rowData: any = [];
+    rowData2: any = [];
+    tmp: any = [];
+
+    constructor(private service: SharedService) { }
+
+    ngOnInit(): void {
+        this.service.getOverview().subscribe((data) => {
+            this.rowData = data;
+            this.tmp = JSON.parse(this.rowData);
+            this.rowData = this.tmp.slice(0, 50);
+            this.rowData2 = this.tmp.slice(50, 75);
+        });
+    }
 
     columnDefs: ColDef[] = [
         { field: 'symbol', sortable: true, headerName: 'Symbol', flex: 1 },
@@ -32,13 +48,6 @@ export class HomeComponent {
         { field: 'marketcap', sortable: true, headerName: 'Market Cap', flex: 1 },
         { field: 'sector', sortable: true, headerName: 'Industry', flex: 1 },
     ];
-
-    rowData = [{ "symbol": "ATVI", "name": "Activision Blizzard, Inc.", "sector": "Electronic Gaming & Multimedia", "lastprice": 85.48, "change1": 0.26, "change2": 0.31, "volume": 4948951, "marketcap": 67039744000 }, { "symbol": "ADBE", "name": "Adobe Inc.", "sector": "Software\u2014Infrastructure", "lastprice": 376.25, "change1": -4.35, "change2": -1.14, "volume": 1689674, "marketcap": 172585877504 }, { "symbol": "ADP", "name": "Automatic Data Processing, Inc.", "sector": "Staffing & Employment Services", "lastprice": 214.22, "change1": -1.89, "change2": -0.87, "volume": 1076542, "marketcap": 88762482688 },];
-
-    rowData2 = [
-        { "symbol": "AMD", "name": "Advanced Micro Devices, Inc.", "sector": "Semiconductors", "lastprice": 84.21, "change1": -0.75, "change2": -0.88, "volume": 30194592, "marketcap": 100997998336 }, { "symbol": "ALGN", "name": "Align Technology, Inc.", "sector": "Medical Devices", "lastprice": 633.5, "change1": -0.5, "change2": -0.08, "volume": 1027940, "marketcap": 51174447104 },
-    ];
-
 
     currentDataSource = 1;
 
