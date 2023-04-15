@@ -9,12 +9,19 @@ export class SharedService {
     readonly APIUrl = "http://127.0.0.1:8000";
     readonly PhotoUrl = "http://127.0.0.1:8000/media/";
     readonly OVERVIEWUrl = "http://127.0.0.1:8000/overview/";
+    private DETAILUrl = "http://127.0.0.1:8000/detail/";
 
     constructor(private http: HttpClient) { }
 
     getOverview(): Observable<any[]> {
         return this.http.get<any>(this.OVERVIEWUrl);
     }
+
+    getDetail(query: string): Observable<any[]> {
+        return this.http.get<any>(this.DETAILUrl + query);
+    }
+
+    /* Department */
 
     getDepList(): Observable<any[]> {
         return this.http.get<any[]>(this.APIUrl + '/department/');
