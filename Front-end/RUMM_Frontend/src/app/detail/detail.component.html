@@ -14,16 +14,26 @@
                 <td>{{ result.symbol }}</td>
                 <td>{{ result.name }}</td>
                 <td>{{ result.type }}</td>
-                <td>{{ result.price | currency }}</td>
+                <td>{{ result.price }}</td>
             </tr>
         </tbody>
     </table>
+
+    <div class="container_graph">
+        <div class="chart-container">
+            <app-price-chart></app-price-chart>
+            <app-candlestick-chart></app-candlestick-chart>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="results.length === 0">
+
     <div class="container">
         <div class="alert alert-danger">
-            <h2 class="text-center">Symbol you have entered does not correspond to any known stock or crypto.</h2>
+            <h2 class="text-center">Symbol "{{query}}" you have entered does not correspond to any known stock or
+                crypto.
+            </h2>
             <h3 class="text-left">I suggest that:</h3>
             <ul>
                 <li>Make sure that you have spelled the symbol correctly.</li>

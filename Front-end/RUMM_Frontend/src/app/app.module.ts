@@ -25,6 +25,8 @@ import { DiscussionComponent } from './discussion/discussion.component';
 /* Service */
 import { SharedService } from './shared.service';
 import { DetailComponent } from './detail/detail.component';
+import { PriceChartComponent } from './detail/price-chart/price-chart.component';
+import { CandlestickChartComponent } from './detail/candlestick-chart/candlestick-chart.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +40,8 @@ import { DetailComponent } from './detail/detail.component';
         CryptoComponent,
         DiscussionComponent,
         DetailComponent,
+        PriceChartComponent,
+        CandlestickChartComponent,
 
     ],
     imports: [

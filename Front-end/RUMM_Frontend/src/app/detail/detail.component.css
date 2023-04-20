@@ -1,0 +1,12 @@
+.chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+app-price-chart,
+app-candlestick-chart {
+    flex: 1;
+    margin: 0 10px;
+    /* Add some space between the components */
+}
