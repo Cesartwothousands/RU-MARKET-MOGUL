@@ -9,26 +9,18 @@ import * as d3 from 'd3';
 export class PriceChartComponent implements OnInit {
     private data = [
         { Date: '2022-01-01', Price: 179.50, Open: 180.00, High: 182.00, Low: 178.00, Close: 181.00, Volume: 500000, Sma: 177.00, Upper: 185.00, Lower: 169.00 },
-
-        { Date: '2022-03-15', Price: 172.25, Open: 172.50, High: 174.00, Low: 171.00, Close: 173.00, Volume: 700000, Sma: 170.00, Upper: 176.00, Lower: 164.00 },
-
+        { Date: '2022-03-15', Price: 172.25, Open: 172.50, High: 174.00, Low: 171.00, Close: 171.00, Volume: 700000, Sma: 170.00, Upper: 176.00, Lower: 164.00 },
         { Date: '2022-06-30', Price: 184.75, Open: 185.00, High: 187.00, Low: 183.00, Close: 186.00, Volume: 800000, Sma: 182.00, Upper: 191.00, Lower: 173.00 },
-
-        { Date: '2022-09-22', Price: 164.50, Open: 165.00, High: 167.00, Low: 163.00, Close: 166.00, Volume: 600000, Sma: 162.00, Upper: 169.00, Lower: 155.00 },
-
+        { Date: '2022-09-22', Price: 164.50, Open: 165.00, High: 167.00, Low: 163.00, Close: 162.00, Volume: 600000, Sma: 162.00, Upper: 169.00, Lower: 155.00 },
         { Date: '2023-01-01', Price: 192.25, Open: 192.00, High: 195.00, Low: 190.00, Close: 194.00, Volume: 900000, Sma: 190.00, Upper: 198.00, Lower: 182.00 },
-
         { Date: '2023-04-19', Price: 184.25, Open: 184.00, High: 187.00, Low: 182.00, Close: 186.00, Volume: 800000, Sma: 182.00, Upper: 190.00, Lower: 174.00 },
-
-        { Date: '2023-07-31', Price: 173.50, Open: 173.00, High: 175.00, Low: 170.00, Close: 174.00, Volume: 500000, Sma: 170.00, Upper: 178.00, Lower: 162.00 },
-
+        { Date: '2023-07-31', Price: 173.50, Open: 173.00, High: 175.00, Low: 170.00, Close: 170.00, Volume: 500000, Sma: 170.00, Upper: 178.00, Lower: 162.00 },
         { Date: '2023-10-10', Price: 189.50, Open: 190.00, High: 192.00, Low: 187.00, Close: 191.00, Volume: 600000, Sma: 186.00, Upper: 195.00, Lower: 177.00 },
-
-        { Date: '2024-02-14', Price: 176.50, Open: 177.00, High: 179.00, Low: 174.00, Close: 178.00, Volume: 400000, Sma: 172.00, Upper: 182.00, Lower: 162.00 },
+        { Date: '2024-02-14', Price: 176.50, Open: 177.00, High: 179.00, Low: 174.00, Close: 173.00, Volume: 400000, Sma: 172.00, Upper: 182.00, Lower: 162.00 },
     ];
 
     private svg: any;
-    private margin = 50;
+    private margin = 40;
     private width = 750 - this.margin * 2;
     private height = 400 - this.margin * 2;
     private parseDate = d3.utcParse('%Y-%m-%d');
@@ -50,12 +42,12 @@ export class PriceChartComponent implements OnInit {
                 d3.extent(data, (d) => this.parseDate(d.Date) ?? new Date()) as [Date, Date])
             .range([0, this.width]);
 
-        const minY = Math.min(...data.map(d => d.Lower));
-        const maxY = Math.max(...data.map(d => d.Upper));
+        const minY = Math.min(...data.map(d => Math.min(d.Lower, d.Price)));
+        const maxY = Math.max(...data.map(d => Math.max(d.Upper, d.Price)));
 
         const y = d3
             .scaleLinear()
-            .domain([minY, maxY])
+            .domain([minY - (maxY - minY) * 0.1, maxY + (maxY - minY) * 0.1])
             .range([this.height, 0]);
 
         const xAxis = d3.axisBottom(x);
@@ -66,7 +58,7 @@ export class PriceChartComponent implements OnInit {
             .x((d) => x(this.parseDate(d.Date) ?? new Date()))
             .y((d) => y(d.value));
 
-        const colors = ['blue', 'green', 'red', 'orange'];
+        const colors = ['black', 'blue', 'red', 'green'];
 
         const lineData = [
             data.map((d) => ({ Date: d.Date, value: d.Price })),
@@ -76,13 +68,17 @@ export class PriceChartComponent implements OnInit {
         ];
 
         lineData.forEach((series, i) => {
-            this.svg
+            const path = this.svg
                 .append('path')
                 .datum(series)
                 .attr('fill', 'none')
                 .attr('stroke', colors[i])
                 .attr('stroke-width', 1.5)
                 .attr('d', line);
+
+            if (i >= 1) {
+                path.attr('stroke-dasharray', '1');
+            }
         });
 
         this.svg
@@ -93,9 +89,40 @@ export class PriceChartComponent implements OnInit {
         this.svg.append('g').call(yAxis);
     }
 
+    private drawLegend(): void {
+        const legendData = [
+            { color: 'black', label: 'Price' },
+            { color: 'blue', label: 'SMA' },
+            { color: 'red', label: 'Upper' },
+            { color: 'green', label: 'Lower' },
+        ];
+
+        const legendGroup = this.svg.append('g').attr('transform', `translate(${this.width - 40}, 0)`);
+
+        legendData.forEach((entry, i) => {
+            const legend = legendGroup.append('g').attr('transform', `translate(0, ${i * 15})`);
+
+            legend
+                .append('rect')
+                .attr('width', 10)
+                .attr('height', 10)
+                .style('fill', entry.color);
+
+            legend
+                .append('text')
+                .attr('x', 12.5)
+                .attr('y', 10)
+                .text(entry.label)
+                .attr('font-size', '10px')
+                .attr('text-anchor', 'start')
+                .attr('alignment-baseline', 'top');
+        });
+    }
+
 
     ngOnInit(): void {
         this.createSvg();
         this.drawLines(this.data);
+        this.drawLegend();
     }
 }
