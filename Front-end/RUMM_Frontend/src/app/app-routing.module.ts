@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DepartmentComponent } from './department/department.component';
 import { HomeComponent } from './home/home.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { CryptoComponent } from './crypto/crypto.component';
@@ -16,7 +15,6 @@ const routes: Routes = [
     { path: 'crypto', component: CryptoComponent },
     { path: 'user', component: UserComponent },
     { path: 'discussion', component: DiscussionComponent },
-    { path: 'department', component: DepartmentComponent },
     { path: 'detail', component: HomeComponent },
     { path: 'detail/:query', component: DetailComponent },
 ];

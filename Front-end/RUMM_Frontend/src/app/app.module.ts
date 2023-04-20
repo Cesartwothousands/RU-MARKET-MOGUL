@@ -13,9 +13,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 /* Component */
 import { AppComponent } from './app.component';
-import { DepartmentComponent } from './department/department.component';
-import { ShowDepComponent } from './department/show-dep/show-dep.component';
-import { AddEditDepComponent } from './department/add-edit-dep/add-edit-dep.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { StocksComponent } from './stocks/stocks.component';
@@ -31,9 +28,6 @@ import { CandlestickChartComponent } from './detail/candlestick-chart/candlestic
 @NgModule({
     declarations: [
         AppComponent,
-        DepartmentComponent,
-        ShowDepComponent,
-        AddEditDepComponent,
         UserComponent,
         HomeComponent,
         StocksComponent,

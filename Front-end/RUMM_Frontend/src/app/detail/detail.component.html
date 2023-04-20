@@ -1,23 +1,26 @@
 <div *ngIf="results.length > 0">
     <h2>Search results for "{{ query }}":</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Symbol</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let result of results">
-                <td>{{ result.symbol }}</td>
-                <td>{{ result.name }}</td>
-                <td>{{ result.type }}</td>
-                <td>{{ result.price }}</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <h2>{{ results[0].longname }} ({{ results[0].symbol }})</h2>
+    <p>Sector: {{ results[0].sector }}</p>
+    <p>Current Price: {{ results[0].current_price }}</p>
+    <p>Previous Close: {{ results[0].previous_close }}</p>
+    <p>Day Low: {{ results[0].day_low }}</p>
+    <p>Day High: {{ results[0].day_high }}</p>
+    <p>Year Low: {{ results[0].year_low }}</p>
+    <p>Year High: {{ results[0].year_high }}</p>
+    <p>Volume: {{ results[0].volume }}</p>
+    <p>Market Cap: {{ results[0].marketCap }}</p>
+    <p>Average Volume: {{ results[0].averageVolume }}</p>
+    <p>Target High Price: {{ results[0].targetHighPrice }}</p>
+    <p>Target Low Price: {{ results[0].targetLowPrice }}</p>
+    <p>Target Median Price: {{ results[0].targetMedianPrice }}</p>
+    <p>Recommendation Mean: {{ results[0].recommendationMean }}</p>
+    <p>Recommendation Key: {{ results[0].recommendationKey }}</p>
+    <p>Website: {{ results[0].website }}</p>
+    <p>Twitter: {{ results[0].twitter }}</p>
+    <p>Price Change: {{ results[0].price_change }}</p>
+    <p>Price Change Percent: {{ results[0].price_change_percent }}</p>
 
     <div class="container_graph">
         <div class="chart-container">

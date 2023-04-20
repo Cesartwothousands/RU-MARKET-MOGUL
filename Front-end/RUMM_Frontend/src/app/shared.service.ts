@@ -17,49 +17,8 @@ export class SharedService {
         return this.http.get<any>(this.OVERVIEWUrl);
     }
 
-    getDetail(query: string): Observable<any[]> {
+    getDetailInfo(query: string): Observable<any[]> {
         return this.http.get<any>(this.DETAILUrl + query);
     }
 
-    /* Department */
-
-    getDepList(): Observable<any[]> {
-        return this.http.get<any[]>(this.APIUrl + '/department/');
-    }
-
-    addDepartment(val: any) {
-        return this.http.post(this.APIUrl + '/department/', val);
-    }
-
-    updateDepartment(val: any) {
-        return this.http.put(this.APIUrl + '/department/', val);
-    }
-
-    deleteDepartment(val: any) {
-        return this.http.delete(this.APIUrl + '/department/' + val);
-    }
-
-    getUserList(): Observable<any[]> {
-        return this.http.get<any[]>(this.APIUrl + '/user/');
-    }
-
-    addUser(val: any) {
-        return this.http.post(this.APIUrl + '/user/', val);
-    }
-
-    updateUser(val: any) {
-        return this.http.put(this.APIUrl + '/user/', val);
-    }
-
-    deleteUser(val: any) {
-        return this.http.delete(this.APIUrl + '/user/' + val);
-    }
-
-    UploadPhoto(val: any) {
-        return this.http.post(this.APIUrl + '/SaveFile', val);
-    }
-
-    getAllDepartmentNames(): Observable<any[]> {
-        return this.http.get<any[]>(this.APIUrl + '/department/');
-    }
 }
