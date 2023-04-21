@@ -26,27 +26,35 @@ export class HomeComponent implements OnInit {
     }
 
     columnDefs: ColDef[] = [
-        { field: 'symbol', sortable: true, headerName: 'Symbol', flex: 1 },
-        { field: 'name', sortable: true, headerName: 'Name', flex: 1 },
-        { field: 'lastprice', sortable: true, headerName: 'Last Price', flex: 1 },
+        {
+            field: 'symbol', sortable: true, headerName: 'Symbol', flex: 2,
+            cellRenderer: (params: any) => {
+                const link = document.createElement('a');
+                link.setAttribute('href', `detail/${params.value}`);
+                link.innerText = params.value;
+                return link;
+            }
+        },
+        { field: 'name', sortable: true, headerName: 'Name', flex: 3 },
+        { field: 'lastprice', sortable: true, headerName: 'Last Price', flex: 2 },
         {
             field: 'change1',
             sortable: true,
             headerName: 'Change',
             cellStyle: (params: CellClassParams) => params.value < 0 ? { color: 'red' } : { color: 'green' },
-            flex: 1
+            flex: 2
         },
         {
             field: 'change2',
             sortable: true,
             headerName: '% Change',
             cellStyle: (params: CellClassParams) => params.value < 0 ? { color: 'red' } : { color: 'green' },
-            flex: 1
+            flex: 2
         },
 
-        { field: 'volume', sortable: true, headerName: 'Volume', flex: 1 },
-        { field: 'marketcap', sortable: true, headerName: 'Market Cap', flex: 1 },
-        { field: 'sector', sortable: true, headerName: 'Industry', flex: 1 },
+        { field: 'volume', sortable: true, headerName: 'Volume', flex: 2 },
+        { field: 'marketcap', sortable: true, headerName: 'Market Cap', flex: 2 },
+        { field: 'sector', sortable: true, headerName: 'Sector', flex: 3 },
     ];
 
     currentDataSource = 1;

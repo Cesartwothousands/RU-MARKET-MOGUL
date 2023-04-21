@@ -37,10 +37,15 @@ interface DetailInfo {
 export class DetailComponent implements OnInit {
     query?: string;
     results: any[] = [];
+    results_graph: any[][] = [[], [], [], [], []];
+    selectedInterval = '1d';
+    graph_data: any[] = [];
 
     constructor(private route: ActivatedRoute, private service: SharedService, private router: Router) { }
 
     ngOnInit() {
+        this.onIntervalChange();
+
         // Subscribe to route parameters to get the 'query' parameter
         this.route.params.subscribe((params) => {
             // Assign the 'query' parameter value to the 'query' property
@@ -52,13 +57,45 @@ export class DetailComponent implements OnInit {
                 return;
             }
 
-            // Call the getDetail() method from the SharedService and subscribe to the returned observable
             this.service.getDetailInfo(this.query).subscribe((data: any) => {
                 //console.log('Received data:', typeof data);
                 this.results = JSON.parse(data);
                 //console.log('Parsed data:', this.results);
             });
 
+            this.service.getDetailGraph(this.query).subscribe((data: any) => {
+                //console.log('Received data:', data);
+                this.results_graph = data;
+                this.graph_data = this.results_graph[0];
+                //console.log('Parsed data:', this.results_graph);
+            });
+
         });
+
+
     }
+
+    onIntervalChange() {
+
+        const index = this.getIntervalIndex(this.selectedInterval);
+        this.graph_data = this.results_graph[index];
+    }
+
+    getIntervalIndex(interval: string): number {
+        switch (interval) {
+            case '1d':
+                return 0;
+            case '2m':
+                return 1;
+            case '6m':
+                return 2;
+            case '1y':
+                return 3;
+            case '5y':
+                return 4;
+            default:
+                return 0;
+        }
+    }
+
 }

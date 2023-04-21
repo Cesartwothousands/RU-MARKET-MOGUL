@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'Users.apps.UsersConfig',
     'rest_framework',
     'detail_info',
+    'detail_graph',
 ]
 
 # CORS_ORINGIN_ALLOW_ALL = True

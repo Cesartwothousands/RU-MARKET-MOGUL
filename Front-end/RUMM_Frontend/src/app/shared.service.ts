@@ -6,10 +6,9 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class SharedService {
-    readonly APIUrl = "http://127.0.0.1:8000";
-    readonly PhotoUrl = "http://127.0.0.1:8000/media/";
-    readonly OVERVIEWUrl = "http://127.0.0.1:8000/overview/";
+    private OVERVIEWUrl = "http://127.0.0.1:8000/overview/";
     private DETAILUrl = "http://127.0.0.1:8000/detail/";
+    private DETAILGRAPHUrl = "http://127.0.0.1:8000/detailgraph/";
 
     constructor(private http: HttpClient) { }
 
@@ -21,4 +20,7 @@ export class SharedService {
         return this.http.get<any>(this.DETAILUrl + query);
     }
 
+    getDetailGraph(query: string): Observable<any[]> {
+        return this.http.get<any>(this.DETAILGRAPHUrl + query);
+    }
 }

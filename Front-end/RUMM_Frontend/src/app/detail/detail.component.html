@@ -23,9 +23,17 @@
     <p>Price Change Percent: {{ results[0].price_change_percent }}</p>
 
     <div class="container_graph">
+        <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+            <option value="1d">1 Day</option>
+            <option value="2m">2 Months</option>
+            <option value="6m">6 Months</option>
+            <option value="1y">1 Year</option>
+            <option value="5y">5 Years</option>
+        </select>
+
         <div class="chart-container">
-            <app-price-chart></app-price-chart>
-            <app-candlestick-chart></app-candlestick-chart>
+            <app-price-chart [data]="graph_data"></app-price-chart>
+            <app-candlestick-chart [data]="graph_data"></app-candlestick-chart>
         </div>
     </div>
 </div>

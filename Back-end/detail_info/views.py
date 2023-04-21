@@ -1,22 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render
 import json
 import yfinance as yf
 from django.http import JsonResponse
-from .models import Stocks, Crypto
 
 
 def fetch_stock_detail_info(request, symbol):
     data = []
     symbol = symbol.upper()
-
-    stock_exists = Stocks.objects.filter(symbol=symbol).exists()
-    crypto_exists = Crypto.objects.filter(symbol=symbol).exists()
-
-    if not (stock_exists or crypto_exists):
-        return JsonResponse(data, safe=False)
 
     try:
         stock_info = yf.Ticker(symbol).info

@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('overview/', include('overview.urls')),
     path('detail/', include('detail_info.urls')),
+    path('detailgraph/', include('detail_graph.urls')),
 ]

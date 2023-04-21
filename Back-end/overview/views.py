@@ -35,10 +35,10 @@ def fetch_data(symbol):
     if '-USD' in symbol:
         last_price = round(yf.Ticker(symbol).history(
             period='1d').iloc[0]['Close'], 2)
-        industry = 'Crypto'
+        sector = 'Crypto'
     else:
         last_price = round(stock_info['currentPrice'], 2)
-        industry = stock_info['industry']
+        sector = stock_info['sector']
 
     previous_close = round(stock_info['previousClose'], 2)
 
@@ -59,7 +59,7 @@ def fetch_data(symbol):
     return ({
         'symbol': symbol,
         'name': name,
-        'sector': industry,
+        'sector': sector,
         'lastprice': last_price,
         'change1': price_change,
         'change2': price_change_percent,
