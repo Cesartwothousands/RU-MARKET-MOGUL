@@ -67,7 +67,12 @@ export class DetailComponent implements OnInit {
                 //console.log('Received data:', data);
                 this.results_graph = data;
                 this.graph_data = this.results_graph[0];
-                //console.log('Parsed data:', this.results_graph);
+                //console.log('Parsed data:', this.graph_data);
+
+                if (this.results_graph[0].length === 0) {
+                    this.selectedInterval = '2m';
+                    this.onIntervalChange();
+                }
             });
 
         });

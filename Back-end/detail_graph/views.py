@@ -50,9 +50,25 @@ def fetch_stock_detail_graph(request, symbol):
 
     stock_data_list = []
 
-    start_date = end_date - timedelta(days=1)
-    stockdata = yf_donwload_data(start_date, '1m')
-    stock_data_list.append(stock_data_to_json(stockdata, '1m'))
+    max_retries = 5
+    retries = 0
+    data_downloaded = False
+
+    while retries < max_retries and not data_downloaded:
+        start_date_1 = end_date - timedelta(days=1+retries)
+        stock_data = yf_donwload_data(start_date_1, '1m')
+
+        if not stock_data.empty:
+            stock_data_list.append(stock_data_to_json(stock_data, '1m'))
+            data_downloaded = True
+        else:
+            retries += 1
+
+    if not data_downloaded:
+        print(
+            f"Failed to download data for {symbol} after {max_retries} retries.")
+    else:
+        print(retries)
 
     start_date = end_date - timedelta(days=60+width)
     stockdata = yf_donwload_data(start_date, '1d')
