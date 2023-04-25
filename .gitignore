@@ -2,3 +2,5 @@ Local Dataset
 __pycache__
 myenv
 db.sqlite3
+hmm_model.pkl
+processed_stock_data.csv
