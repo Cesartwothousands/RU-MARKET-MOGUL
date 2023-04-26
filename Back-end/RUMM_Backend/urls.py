@@ -22,4 +22,5 @@ urlpatterns = [
     path('overview/', include('overview.urls')),
     path('detail/', include('detail_info.urls')),
     path('detailgraph/', include('detail_graph.urls')),
+    path('predictions/', include('predictions.urls')),
 ]

@@ -22,6 +22,12 @@
     <p>Price Change: {{ results[0].price_change }}</p>
     <p>Price Change Percent: {{ results[0].price_change_percent }}</p>
 
+    <h3>Stock Prediction</h3>
+    <p>VPT Trend: {{ stock_prediction.vpt_trend }}</p>
+    <p>RSI Value: {{ stock_prediction.rsi_value }}</p>
+    <p>MACD Trend: {{ stock_prediction.macd_trend }}</p>
+    <p>HMM Prediction: {{ stock_prediction.HMM_prediction }}</p>
+
     <div class="container_graph">
         <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
             <option value="1d">1 Day</option>

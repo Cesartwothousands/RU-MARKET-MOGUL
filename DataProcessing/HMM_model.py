@@ -50,10 +50,10 @@ train_ratio = 0.7
 train_size = int(len(X) * train_ratio)
 X_train, X_val = X[:train_size], X[train_size:]
 
-n_states = 2
+n_states = 3
 
 model = hmm.GaussianHMM(n_components=n_states,
-                        covariance_type="diag", n_iter=1000000000000)
+                        covariance_type="diag", n_iter=10000)
 model.fit(X_train)
 
 hidden_states_val = model.predict(X_val)
@@ -62,10 +62,10 @@ mse = mean_squared_error(X_val[:, 0], hidden_states_val)
 
 print(f"Mean squared error: {mse}")
 
-'''# Save the trained model to a file
-with open("hmm_model.pkl", "wb") as file:
+# Save the trained model to a file
+with open("hmm_model_3.pkl", "wb") as file:
     pickle.dump(model, file)
-'''
+
 
 '''
 2,0.8:Mean squared error: 0.9982074311529583

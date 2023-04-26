@@ -40,6 +40,7 @@ export class DetailComponent implements OnInit {
     results_graph: any[][] = [[], [], [], [], []];
     selectedInterval = '1d';
     graph_data: any[] = [];
+    stock_prediction: any = {};
 
     constructor(private route: ActivatedRoute, private service: SharedService, private router: Router) { }
 
@@ -73,6 +74,10 @@ export class DetailComponent implements OnInit {
                     this.selectedInterval = '2m';
                     this.onIntervalChange();
                 }
+            });
+
+            this.service.getStockPrediction(this.query).subscribe((data_pre: any) => {
+                this.stock_prediction = data_pre;
             });
 
         });

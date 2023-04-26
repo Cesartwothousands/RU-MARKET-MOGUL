@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'detail_info',
     'detail_graph',
+    'overview',
+    'predictions',
 ]
 
 # CORS_ORINGIN_ALLOW_ALL = True
