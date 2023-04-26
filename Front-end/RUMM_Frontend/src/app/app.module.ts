@@ -24,6 +24,8 @@ import { SharedService } from './shared.service';
 import { DetailComponent } from './detail/detail.component';
 import { PriceChartComponent } from './detail/price-chart/price-chart.component';
 import { CandlestickChartComponent } from './detail/candlestick-chart/candlestick-chart.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +38,8 @@ import { CandlestickChartComponent } from './detail/candlestick-chart/candlestic
         DetailComponent,
         PriceChartComponent,
         CandlestickChartComponent,
-
+        RegisterComponent,
+        LoginComponent,
     ],
     imports: [
         BrowserModule,

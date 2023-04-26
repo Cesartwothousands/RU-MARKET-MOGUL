@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { CryptoComponent } from './crypto/crypto.component';
 import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { DetailComponent } from './detail/detail.component';
 
@@ -17,6 +19,8 @@ const routes: Routes = [
     { path: 'discussion', component: DiscussionComponent },
     { path: 'detail', component: HomeComponent },
     { path: 'detail/:query', component: DetailComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
