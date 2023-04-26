@@ -28,6 +28,8 @@
     <p>MACD Trend: {{ stock_prediction.macd_trend }}</p>
     <p>HMM Prediction: {{ stock_prediction.HMM_prediction }}</p>
 
+    <button (click)="onStartPrediction()">Start Prediction</button>
+
     <div class="container_graph">
         <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
             <option value="1d">1 Day</option>

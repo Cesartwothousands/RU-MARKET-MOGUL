@@ -68,7 +68,7 @@ export class DetailComponent implements OnInit {
                 //console.log('Received data:', data);
                 this.results_graph = data;
                 this.graph_data = this.results_graph[0];
-                //console.log('Parsed data:', this.graph_data);
+                console.log('Parsed data1:', this.graph_data);
 
                 if (this.results_graph[0].length === 0) {
                     this.selectedInterval = '2m';
@@ -76,17 +76,39 @@ export class DetailComponent implements OnInit {
                 }
             });
 
-            this.service.getStockPrediction(this.query).subscribe((data_pre: any) => {
-                this.stock_prediction = data_pre;
-            });
-
         });
+    }
+
+    getQuery() {
+        this.route.params.subscribe((params) => {
+            // Assign the 'query' parameter value to the 'query' property
+            this.query = params['query'];
+
+            // Redirect to the homepage if the query is undefined, empty or contains only whitespace
+            if (!this.query || this.query.trim() === '') {
+                this.router.navigate(['/']);
+                return;
+            }
+        });
+    }
+
+    fetchStockPrediction() {
+        if (!this.query) {
+            return;
+        }
+        this.service.getStockPrediction(this.query).subscribe((data_pre: any) => {
+            this.stock_prediction = data_pre;
+            console.log('Parsed data2:', this.stock_prediction);
+        });
+    }
 
 
+    onStartPrediction() {
+        this.getQuery();
+        this.fetchStockPrediction();
     }
 
     onIntervalChange() {
-
         const index = this.getIntervalIndex(this.selectedInterval);
         this.graph_data = this.results_graph[index];
     }

@@ -4,7 +4,6 @@ from django.shortcuts import render
 import yfinance as yf
 from datetime import datetime, timedelta
 from django.http import JsonResponse
-import numpy as np
 
 
 def fetch_stock_detail_graph(request, symbol):
@@ -14,7 +13,7 @@ def fetch_stock_detail_graph(request, symbol):
 
     def yf_donwload_data(date, interval):
         stock_data = yf.download(
-            symbol, start=date, end=end_date, interval=interval)
+            symbol, start=date, end=end_date, interval=interval, progress=False)
         stock_data = get_sma_data(stock_data)
         stock_data = get_stock_volume(stock_data)
 
@@ -25,7 +24,7 @@ def fetch_stock_detail_graph(request, symbol):
         stock_data['Std'] = stock_data['Close'].rolling(window=width).std()
         stock_data['Upper'] = stock_data['Sma'] + (stock_data['Std'] * 2)
         stock_data['Lower'] = stock_data['Sma'] - (stock_data['Std'] * 2)
-
+        # print(stock_data)
         return stock_data
 
     def get_stock_volume(stock_data):

@@ -17,7 +17,7 @@ export class PriceChartComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes['data']) {
             this.updateChart();
-            console.log('Data:', this.data);
+            //console.log('Data:', this.data);
         }
     }
 
