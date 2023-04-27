@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'detail_graph',
     'overview',
     'predictions',
+    'webreg',
+    'property',
+    'rest_framework_simplejwt',
 ]
 
 # CORS_ORINGIN_ALLOW_ALL = True
@@ -54,6 +57,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  # Replace this with your Angular development server's origin
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # CORS

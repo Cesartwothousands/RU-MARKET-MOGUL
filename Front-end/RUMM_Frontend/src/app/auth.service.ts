@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
     providedIn: 'root'
@@ -14,10 +16,15 @@ export class AuthService {
     }
 
     login(credentials: any) {
-        return this.http.post(`${this.WEBREGUrl}/login/`, credentials);
+        return this.http.post(`${this.WEBREGUrl}/login/`, credentials).pipe(
+            tap((response: any) => {
+                localStorage.setItem('access_token', response.access);
+            })
+        );
     }
 
     logout() {
-        //      return this.http.post('http://127.0.0.1:8000/logout/', {});
+        localStorage.removeItem('access_token');
+        return this.http.post(`${this.WEBREGUrl}/logout/`, {});
     }
 }

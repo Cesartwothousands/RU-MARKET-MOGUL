@@ -26,6 +26,10 @@ import { PriceChartComponent } from './detail/price-chart/price-chart.component'
 import { CandlestickChartComponent } from './detail/candlestick-chart/candlestick-chart.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
+import { CashComponent } from './detail/cash/cash.component';
+import { BuyComponent } from './detail/buy/buy.component';
+import { SellComponent } from './detail/sell/sell.component';
+import { InitCashComponent } from './user/init-cash/init-cash.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +44,10 @@ import { LoginComponent } from './user/login/login.component';
         CandlestickChartComponent,
         RegisterComponent,
         LoginComponent,
+        CashComponent,
+        BuyComponent,
+        SellComponent,
+        InitCashComponent,
     ],
     imports: [
         BrowserModule,
