@@ -101,7 +101,7 @@ class UserInfoView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        user = User.objects.get(user=request.user)
+        user = request.user
         stocks = PurchasedStock.objects.filter(user=user)
         stocks_serialized = UserInfoStockSerializer(stocks, many=True)
         user_info = {

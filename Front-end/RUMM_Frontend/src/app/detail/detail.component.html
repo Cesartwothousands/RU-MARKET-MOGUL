@@ -1,6 +1,21 @@
 <div *ngIf="results.length > 0">
     <h2>Search results for "{{ query }}":</h2>
 
+    <div class="card" *ngIf="userDetailsAvailable">
+        <div class="card-body">
+            <h5 class="card-title">Hello, {{ userDetailsWithStockInfo.username }}</h5>
+            <p class="card-text">
+                You own {{ userDetailsWithStockInfo.share }} share(s) of {{ results[0].longname }}.
+                <br>
+                You have {{ userDetailsWithStockInfo.cash }} USD left.
+            </p>
+            <p class="card-text">
+                Current Price per Share: {{ userDetailsWithStockInfo.stock_price }}
+            </p>
+        </div>
+    </div>
+
+
     <h2>{{ results[0].longname }} ({{ results[0].symbol }})</h2>
     <p>Sector: {{ results[0].sector }}</p>
     <p>Current Price: {{ results[0].current_price }}</p>
