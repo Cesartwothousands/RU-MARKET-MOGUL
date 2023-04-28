@@ -14,7 +14,8 @@
             </p>
             <app-buy [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash"
                 [price]="results[0].current_price"></app-buy>
-            <app-sell></app-sell>
+            <app-sell [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash" [price]="results[0].current_price"
+                [availableShares]="userDetailsWithStockInfo.share"></app-sell>
         </div>
     </div>
 

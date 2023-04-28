@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .models import PurchasedStock
 from .serializers import PurchasedStockSerializer, UserInfoSerializer, UserInfoStockSerializer
+from decimal import ROUND_DOWN, Decimal
 
 
 class BuyStockView(APIView):
@@ -23,16 +24,18 @@ class BuyStockView(APIView):
 
             if user.cash >= total_cost:
                 stock, created = PurchasedStock.objects.get_or_create(
-                    user=user, stock_symbol=stock_symbol
+                    user=user, stock_symbol=stock_symbol, defaults={'share': 0}
                 )
 
                 if created:
-                    stock.share = share
+                    stock.share = Decimal(share)
                 else:
-                    stock.share += share
+                    stock.share += Decimal(share)
 
                 stock.save()
-                user.cash -= total_cost
+
+                # Convert total_cost to a Decimal object
+                user.cash -= Decimal(total_cost)
                 user.save()
 
                 serializer = PurchasedStockSerializer(stock)
@@ -58,21 +61,27 @@ class SellStockView(APIView):
             except PurchasedStock.DoesNotExist:
                 return Response({"detail": "Stock not found"}, status=status.HTTP_404_NOT_FOUND)
 
-            if stock.share >= share_to_sell:
-                stock.share -= share_to_sell
+            existshare = round(float(stock.share), 1)
+            share_to_sell = round(float(share_to_sell), 1)
+            print("Missing required fields:",
+                  request.data, existshare, share_to_sell,)
 
-                if stock.share == 0:
+            if existshare >= share_to_sell:
+                existshare -= share_to_sell
+
+                if existshare == 0:
                     stock.delete()
                 else:
                     stock.save()
 
                 user = request.user
-                user.cash += value
+                user.cash += Decimal(value)
                 user.save()
 
                 serializer = PurchasedStockSerializer(stock)
                 return Response(serializer.data, status=status.HTTP_200_OK)
             else:
+
                 return Response({"detail": "Insufficient shares"}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -49,6 +49,9 @@ export class BuyComponent implements OnInit {
                         this.cash -= this.value;
                         alert('Purchase successful');
                         this.closeBuyModal();
+
+                        // Reload the page after a successful sale.
+                        location.reload();
                     }
                 });
         }
@@ -56,7 +59,7 @@ export class BuyComponent implements OnInit {
 
     updateValue() {
         if (this.share != null) {
-            this.share = parseFloat(this.share?.toFixed(1));
+            this.share = Number(this.share?.toFixed(1));
         } else {
             this.share = 0.1;
         }
