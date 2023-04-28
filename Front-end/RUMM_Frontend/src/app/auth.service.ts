@@ -27,4 +27,10 @@ export class AuthService {
         localStorage.removeItem('access_token');
         return this.http.post(`${this.WEBREGUrl}/logout/`, {});
     }
+
+    getAccessToken() {
+        const printtoken = localStorage.getItem('access_token');
+        console.log('Access Token:', printtoken);
+        return printtoken;
+    }
 }

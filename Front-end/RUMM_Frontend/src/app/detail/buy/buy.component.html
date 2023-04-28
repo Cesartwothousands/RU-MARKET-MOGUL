@@ -1,1 +1,38 @@
-<p>buy works!</p>
+<button type="button" class="btn btn-primary" (click)="openBuyModal()">Buy</button>
+
+<!-- Buy Modal -->
+<div class="modal" tabindex="-1" [class.show]="showModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Buy More Shares</h5>
+                <button type="button" class="close" (click)="closeBuyModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form #buyForm="ngForm" (ngSubmit)="onBuy(buyForm)">
+
+                    <div class="form-group">
+                        <label for="share">Purchase Quantity (Minimum is 0.1):</label>
+                        <input type="number" step="0.1" min="0.1" class="form-control" id="share" required
+                            [(ngModel)]="share" name="share" (ngModelChange)="updateValue()" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="value">Price:</label>
+                        <span id="value">{{ value | number: '1.3-3' }}</span>
+                        <br>
+                        <span *ngIf="value >= cash" class="text-danger">Exceeds Your Balance</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="(value > cash || value<=0)">Purchase</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -12,6 +12,8 @@ export class UserComponent implements OnInit {
     constructor(private authService: AuthService, private router: Router) { }
 
     ngOnInit() {
+        this.authService.getAccessToken();
+
     }
 
     onLogout() {

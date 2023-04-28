@@ -12,6 +12,9 @@
             <p class="card-text">
                 Current Price per Share: {{ userDetailsWithStockInfo.stock_price }}
             </p>
+            <app-buy [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash"
+                [price]="results[0].current_price"></app-buy>
+            <app-sell></app-sell>
         </div>
     </div>
 

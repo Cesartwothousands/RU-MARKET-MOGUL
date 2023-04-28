@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
     styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
-    query?: string;
+    query: string = '';
     results: any[] = [];
     results_graph: any[][] = [[], [], [], [], []];
     selectedInterval = '1d';
@@ -139,7 +139,6 @@ export class DetailComponent implements OnInit {
             this.userDetailsAvailable = true;
         });
     }
-
 
 
 }
