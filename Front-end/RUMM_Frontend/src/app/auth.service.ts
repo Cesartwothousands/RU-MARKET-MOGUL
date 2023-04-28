@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 
@@ -8,6 +9,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
     private WEBREGUrl = 'http://127.0.0.1:8000/webreg';
+    private PROTFOLIOUrl = 'http://127.0.0.1:8000/portfolio';
 
     constructor(private http: HttpClient) { }
 
@@ -33,4 +35,12 @@ export class AuthService {
         console.log('Access Token:', printtoken);
         return printtoken;
     }
+
+    getPortfolio(): Observable<any> {
+        const token = localStorage.getItem('access_token');
+        const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
+        return this.http.get(this.PROTFOLIOUrl, { headers });
+    }
+
+
 }

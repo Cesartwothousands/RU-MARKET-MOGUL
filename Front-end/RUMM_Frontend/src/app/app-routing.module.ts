@@ -9,6 +9,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { DiscussionComponent } from './discussion/discussion.component';
 import { DetailComponent } from './detail/detail.component';
+import { ProtfoliosComponent } from './protfolios/protfolios.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'detail/:query', component: DetailComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'portfolio', component: ProtfoliosComponent },
 ];
 
 @NgModule({

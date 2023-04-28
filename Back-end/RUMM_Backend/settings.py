@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'webreg',
     'property',
     'rest_framework_simplejwt',
+    'protfolio'
 ]
 
 # CORS_ORINGIN_ALLOW_ALL = True

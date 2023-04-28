@@ -27,4 +27,5 @@ urlpatterns = [
     path('webreg/', include('webreg.urls')),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('property/', include('property.urls')),
+    path('portfolio/', include('protfolio.urls')),
 ]
