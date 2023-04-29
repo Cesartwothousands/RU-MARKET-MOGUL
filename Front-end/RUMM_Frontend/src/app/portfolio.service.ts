@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class PortfolioService {
 
     private PORTFOLIOTABLEUrl = "http://localhost:8000/portfolio/table";
-    private ALLPORTFOLIOUrl = "http://localhost:8000/allportfolio";
+    private ALLPORTFOLIOUrl = "http://localhost:8000/portfolio/allportfolios";
 
     constructor(private http: HttpClient) { }
 

@@ -1,0 +1,14 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let userPortfolio of userPortfolios">
+        <mat-expansion-panel-header>
+            <span mat-panel-title>
+                {{ userPortfolio[0]?.user }}
+            </span>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let stock of userPortfolio">
+            <span>{{ stock.symbol }}:</span>
+            <span>{{ stock.share }}</span>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -28,7 +29,7 @@ class PortfolioView(APIView):
             0
 
         value = round(Decimal(current_price), 2)*stock.share
-        change = Decimal(price_change_percent)
+        change = round(Decimal(price_change_percent), 5)
 
         return {
             'symbol': stock.stock_symbol,
@@ -100,5 +101,28 @@ class PortfolioTable(APIView):
         with ThreadPoolExecutor() as executor:
             results = list(executor.map(self.fetch_stockinfo, stocks))
 
-        print(results)
+        # print(results)
         return Response(results, status=status.HTTP_200_OK)
+
+
+class AllPortfolioTable(APIView):
+    def all_users_portfolio(request):
+        users = User.objects.all()
+
+        all_user_stocks_data = []
+
+        for user in users:
+            user_stocks = PurchasedStock.objects.filter(user=user)
+
+            stocks_data = []
+
+            for stock in user_stocks:
+                stocks_data.append({
+                    'symbol': stock.stock_symbol,
+                    'share': stock.share,
+                    'user': user.username,
+                })
+
+            all_user_stocks_data.append(stocks_data)
+
+        return JsonResponse(all_user_stocks_data, safe=False)

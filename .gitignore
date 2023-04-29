@@ -4,3 +4,4 @@ myenv
 db.sqlite3
 hmm_model.pkl
 processed_stock_data.csv
+trained_hmm_model_3_10000.pkl

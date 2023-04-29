@@ -10,7 +10,11 @@ import { AgGridModule } from 'ag-grid-angular';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 /* Component */
 import { AppComponent } from './app.component';
@@ -33,6 +37,7 @@ import { SellComponent } from './detail/sell/sell.component';
 import { InitCashComponent } from './user/init-cash/init-cash.component';
 import { ProtfoliosComponent } from './protfolios/protfolios.component';
 import { TreemapComponent } from './treemap/treemap.component';
+import { ShareComponent } from './share/share.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +58,7 @@ import { TreemapComponent } from './treemap/treemap.component';
         InitCashComponent,
         ProtfoliosComponent,
         TreemapComponent,
+        ShareComponent,
     ],
     imports: [
         BrowserModule,
@@ -67,7 +73,10 @@ import { TreemapComponent } from './treemap/treemap.component';
         MatAutocompleteModule,
         NgxEchartsModule.forRoot({
             echarts: () => import('echarts')
-        })
+        }),
+        MatExpansionModule,
+        NoopAnimationsModule,
+        BrowserAnimationsModule,
     ],
     providers: [SharedService],
     bootstrap: [AppComponent]
