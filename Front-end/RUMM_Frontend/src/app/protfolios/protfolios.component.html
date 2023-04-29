@@ -1,2 +1,8 @@
-<p>protfolios works!</p>
 <app-treemap></app-treemap>
+
+<div class="container">
+    <ag-grid-angular [enableCellTextSelection]="true" [suppressMovableColumns]="true" class="ag-theme-alpine"
+        [rowData]="rowData" [columnDefs]="columnDefs" [defaultColDef]="{ resizable: true, filter: false }"
+        [domLayout]="'autoHeight'">
+    </ag-grid-angular>
+</div>

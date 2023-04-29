@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
             this.tmp = JSON.parse(this.rowData);
             this.rowData = this.tmp.slice(0, 50);
             this.rowData2 = this.tmp.slice(50, 75);
+            console.log(this.rowData);
         });
     }
 

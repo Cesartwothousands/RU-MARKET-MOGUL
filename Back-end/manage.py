@@ -1,3 +1,7 @@
+# Author: Cesar
+# Email: cesarchen616@outlook.com
+# Contact: https://github.com/Cesartwothousands
+
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os

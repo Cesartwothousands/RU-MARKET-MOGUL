@@ -74,7 +74,10 @@ export class TreemapComponent implements AfterViewInit {
             .attr('height', (d: any) => d.y1 - d.y0)
             .attr('fill', (d: any) => {
                 const change = d.data.change;
-                if (change > 0) {
+                if (d.data.name == 'Cash') {
+                    return 'rgba(0, 0, 255, 0.5)';
+                }
+                else if (change > 0) {
                     return `rgba(0, 128, 0, ${Math.min(0.75, Math.abs(change) * 20)})`;
                 } else if (change < 0) {
                     return `rgba(255, 0, 0, ${Math.min(0.75, Math.abs(change) * 20)})`;
@@ -92,7 +95,7 @@ export class TreemapComponent implements AfterViewInit {
             .attr('x', (d: any) => d.x0 + (d.x1 - d.x0) / 2)
             .attr('y', (d: any) => d.y0 + (d.y1 - d.y0) / 2 - 10)
             .text((d: any) => d.data.name)
-            .attr('font-size', '25px')
+            .attr('font-size', '18px')
             .attr('text-anchor', 'middle')
             .attr('fill', 'black');
 
@@ -102,9 +105,9 @@ export class TreemapComponent implements AfterViewInit {
             .append('text')
             .attr('class', 'change')
             .attr('x', (d: any) => d.x0 + (d.x1 - d.x0) / 2)
-            .attr('y', (d: any) => d.y0 + (d.y1 - d.y0) / 2 + 20)
+            .attr('y', (d: any) => d.y0 + (d.y1 - d.y0) / 2 + 10)
             .text((d: any) => (d.data.change * 100).toFixed(2) + '%')
-            .attr('font-size', '18px')
+            .attr('font-size', '12px')
             .attr('text-anchor', 'middle')
             .attr('fill', 'black');
 
