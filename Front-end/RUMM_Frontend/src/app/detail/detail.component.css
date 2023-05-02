@@ -10,3 +10,58 @@ app-candlestick-chart {
     margin: 0 10px;
     /* Add some space between the components */
 }
+
+.custom-button {
+    font-family: Arial, sans-serif;
+    /* Change the font family as desired */
+    font-size: 18px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    display: flex;
+    align-items: center;
+}
+
+.custom-button:hover {
+    background-color: #09720f;
+}
+
+.custom-button i {
+    margin-right: 8px;
+}
+
+.custom-card .card-body {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.custom-card .label-title,
+.custom-card .label-method {
+    display: inline-block;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.custom-card .label-title {
+    font-size: 20px;
+}
+
+.custom-card .label-method {
+    font-size: 14px;
+    display: block;
+}
+
+.custom-card .custom-button {
+    margin-top: 10px;
+    width: 60%;
+    align-self: center;
+}

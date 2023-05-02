@@ -43,13 +43,13 @@
 
 .custom-navbar .form-control {
     width: 100%;
-    max-width: 40vw;
-    /* 设置搜索框的最大宽度 */
+    max-width: 35vw;
+    /* width of search bar */
 }
 
 
 .custom-navbar {
-    background-color: #d8d8d8;
+    background-color: #aeaeae;
     /* Light background color */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* Subtle box shadow for a more polished look */
@@ -64,14 +64,14 @@
 .custom-navbar .nav-link {
     font-weight: 500;
     /* Make the text bolder */
-    font-size: 18px;
+    font-size: 22px;
     /* Increase the font size */
     /* text-transform: uppercase;
     /* Make the text uppercase */
     color: #241f1f;
-    /* 设置文本颜色为黑色 */
+
     font-family: "Lucida Console", Courier, monospace;
-    /* 使用 Georgia 字体 */
+
     transition: color 0.3s ease-in-out;
     /* Add a smooth color transition */
 }

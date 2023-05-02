@@ -20,6 +20,7 @@
     </div>
 
 
+
     <h2>{{ results[0].longname }} ({{ results[0].symbol }})</h2>
     <p>Sector: {{ results[0].sector }}</p>
     <p>Current Price: {{ results[0].current_price }}</p>
@@ -47,7 +48,92 @@
     <p>MACD Trend: {{ stock_prediction.macd_trend }}</p>
     <p>HMM Prediction: {{ stock_prediction.HMM_prediction }}</p>
 
-    <button (click)="onStartPrediction()">Start Prediction</button>
+
+    <div class="custom-card">
+        <!-- stock-prediction.component.html -->
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">
+
+                <!-- VPT Trend & RSI Value -->
+                <h3 class="label-title">
+                    Daily Prediction
+                    <span class="label-method">using Volume-Price and Strength Index</span>
+                </h3>
+                <div *ngIf="stock_prediction.rsi_value === 2 || (stock_prediction.rsi_value !== 1 && stock_prediction.vpt_trend === 2)"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:green">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
+                    <span>Buy</span>
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
+                </div>
+
+                <div *ngIf="stock_prediction.rsi_value === 1 || (stock_prediction.rsi_value !== 2 && stock_prediction.vpt_trend === 1)"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
+                    <span>Sell</span>
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
+                </div>
+
+                <div *ngIf="stock_prediction.rsi_value === 0 && stock_prediction.vpt_trend === 0"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:orange">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">horizontal_rule</mat-icon>
+                    <span>Hold</span>
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:orange">horizontal_rule</mat-icon>
+                </div>
+
+
+
+                <h3 class="label-title">
+                    Weekly Prediction
+                    <span class="label-method">using MACD</span>
+                </h3>
+                <div *ngIf="stock_prediction.macd_trend === 2"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:green">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
+                    Buy
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
+                </div>
+
+                <div *ngIf="stock_prediction.macd_trend === 1"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
+                    Sell
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
+                </div>
+
+                <div *ngIf="stock_prediction.macd_trend === 0"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:orange">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">horizontal_rule</mat-icon>
+                    Hold
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:orange">horizontal_rule</mat-icon>
+                </div>
+
+
+                <!-- HMM Prediction -->
+                <h3 class="label-title">
+                    Yearly Prediction
+                    <span class="label-method">using Hidden Markov Models</span>
+                </h3>
+                <div *ngIf="stock_prediction.HMM_prediction ===1"
+                    style="display: flex; align-items: center; align-self:center;font-size: 40px; color:green">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
+                    Bullish
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
+                </div>
+                <div *ngIf="stock_prediction.HMM_prediction === 0"
+                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
+                    Bearish
+                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
+                </div>
+
+                <button class="custom-button" (click)="onStartPrediction()"><mat-icon> attach_money</mat-icon>
+                    Get Prediction</button>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <div class="container_graph">
         <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">

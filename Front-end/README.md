@@ -14,8 +14,8 @@ To do:
     - [ ] Info
         - [ ] Difference of Stock and BTC
         - [ ] Table to show it
-    - [ ] Prediction
-        - [ ] Box with green and red
+    - [x] Prediction
+        - [x] Box with green and red
     - [ ] Chart
         - [ ] Hover
     - [ ] Personal Card
@@ -30,10 +30,10 @@ To do:
 - [ ] Community
     - [ ] Brand
     - [ ] Text, Size, Color
-- [ ] Nav Bar
-    - [ ] Size
-    - [ ] Color
+- [x] Nav Bar
+    - [x] Size
+    - [x] Color
 - [ ] Home Page
     - [ ] Brand
     - [ ] Background Color
-    - [ ] Form Size
+    - [x] Form Size
