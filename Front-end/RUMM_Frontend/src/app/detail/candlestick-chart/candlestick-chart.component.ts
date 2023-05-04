@@ -9,8 +9,10 @@ import * as d3 from 'd3';
 export class CandlestickChartComponent implements OnInit, OnChanges {
 
     @Input() data: any[] = [];
+    private tooltip: any;
 
     ngOnInit(): void {
+        this.createTooltip();
         this.updateChart();
     }
 
@@ -122,7 +124,10 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
                 .attr('y', volume_y)
                 .attr('height', volume_height)
                 .attr('width', x.bandwidth())
-                .attr('fill', volume_fill);
+                .attr('fill', volume_fill)
+                .on('mouseover', this.mouseover)
+                .on('mousemove', (event: MouseEvent, d: any) => this.mousemove(event, d))
+                .on('mouseleave', this.mouseleave);
 
             this.svg
                 .append('g')
@@ -136,6 +141,37 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     private getXTicks(data: any[], n: number): any[] {
         return data.filter((_, i) => i % n === 0);
     }
+
+    private createTooltip(): void {
+        d3.select('#candlestick-chart-tooltip').remove();
+
+        this.tooltip = d3
+            .select('body')
+            .append('div')
+            .attr('id', 'candlestick-chart-tooltip')
+            .style('position', 'absolute')
+            .style('display', 'none')
+            .style('background-color', '#f9f9f9')
+            .style('border', '1px solid #d3d3d3')
+            .style('border-radius', '5px')
+            .style('padding', '5px');
+    }
+
+    private mouseover = () => {
+        this.tooltip.style('display', 'inline');
+    };
+
+    private mousemove = (event: MouseEvent, d: any) => {
+        this.tooltip
+            .style('left', (event.pageX + 15) + 'px')
+            .style('top', (event.pageY - 15) + 'px')
+            .html(`Date: ${d.Date ?? d.Datetime}<br/>Volume: ${d.Volume}`);
+    };
+
+    private mouseleave = () => {
+        this.tooltip.style('display', 'none');
+    };
+
 
     updateChart() {
         this.createSvg();

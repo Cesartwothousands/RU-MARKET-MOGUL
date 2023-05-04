@@ -10,17 +10,17 @@ ng serve --open
 
 
 To do:
-- [ ] Detail
-    - [ ] Info
-        - [ ] Difference of Stock and BTC
-        - [ ] Table to show it
+- [x] Detail
+    - [x] Info
+        - [x] Difference of Stock and BTC
+        - [x] Table to show it
     - [x] Prediction
         - [x] Box with green and red
-    - [ ] Chart
-        - [ ] Hover
-    - [ ] Personal Card
-        - [ ] Info
-        - [ ] Button Size and Color
+    - [x] Chart
+        - [x] Hover
+    - [x] Personal Card
+        - [x] Info
+        - [x] Button Size and Color
 - [ ] Portfolio
     - [ ] Personal Card
     - [ ] Total Value
@@ -37,3 +37,5 @@ To do:
     - [ ] Brand
     - [ ] Background Color
     - [x] Form Size
+-----
+- [ ] Data Analysis

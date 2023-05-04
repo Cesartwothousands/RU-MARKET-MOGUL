@@ -78,6 +78,25 @@ export class PriceChartComponent implements OnInit, OnChanges {
 
         const colors = ['black', 'blue', 'red', 'green'];
 
+        const tooltip = this.createTooltip();
+
+        const mouseover = (event: MouseEvent, d: any) => {
+            tooltip.style('opacity', 1);
+        };
+
+        const mousemove = (event: MouseEvent, d: any, i: number, data: any[]) => {
+            const [xPos, yPos] = d3.pointer(event);
+            tooltip
+                .style('left', (event.pageX + 15) + 'px')
+                .style('top', (event.pageY - 15) + 'px')
+                .html(`Date: ${d.Date ?? d.Datetime}<br/>Value: ${d.value}`);
+        };
+
+
+        const mouseleave = (event: MouseEvent, d: any) => {
+            tooltip.style('opacity', 0);
+        };
+
         const lineData = [
             data.map((d) => ({ Date: d.Date ?? d.Datetime, value: d.Close })),
             data.map((d) => ({ Date: d.Date ?? d.Datetime, value: d.Sma })),
@@ -97,6 +116,22 @@ export class PriceChartComponent implements OnInit, OnChanges {
             if (i >= 1) {
                 path.attr('stroke-dasharray', '1');
             }
+
+            this.svg
+                .selectAll('dot')
+                .data(series)
+                .enter()
+                .append('circle')
+                .attr('r', 3)
+                .attr('cx', (d: any) => line.x()(d, 0, []))
+                .attr('cy', (d: any) => line.y()(d, 0, []))
+                .attr('fill', colors[i])
+                .attr('stroke', colors[i])
+                .attr('opacity', 0)
+                .on('mouseover', mouseover)
+                .on('mousemove', mousemove)
+                .on('mouseleave', mouseleave);
+
         });
 
         this.svg
@@ -135,6 +170,22 @@ export class PriceChartComponent implements OnInit, OnChanges {
                 .attr('text-anchor', 'start')
                 .attr('alignment-baseline', 'top');
         });
+    }
+
+    private createTooltip() {
+        const tooltip = d3
+            .select('figure#price-chart')
+            .append('div')
+            .attr('class', 'tooltip')
+            .style('opacity', 0)
+            .style('position', 'absolute')
+            .style('background-color', 'white')
+            .style('border', 'solid')
+            .style('border-width', '1px')
+            .style('border-radius', '5px')
+            .style('padding', '10px');
+
+        return tooltip;
     }
 
     updateChart() {

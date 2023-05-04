@@ -119,7 +119,7 @@ export class TreemapComponent implements AfterViewInit {
             .on('mouseover', (event: any, d: any) => {
                 d3.select(this.tooltip.nativeElement)
                     .style('opacity', 1)
-                    .style('left', (d.x0 + (d.x1 - d.x0) / 2) + 'px')
+                    .style('left', (d.x1 + (d.x1 - d.x0) / 2) + 'px')
                     .style('top', (d.y1 + 10) + 'px')
                     .html(`Symbol: ${d.data.name}<br>Value: ${d.data.value}<br>Realtime Change: ${d.data.change}`);
             })

@@ -48,9 +48,9 @@
                     <div [ngClass]="{'stock-info': !query.includes('-USD'), 'crypto-info': query.includes('-USD')}">
                         <h1>{{ results[0].longname }} ({{ results[0].symbol }})</h1>
 
-                        <table class="table table-hover table-bordered custom-table">
+                        <table class="table table-hover table-bordered" style="width: 110%;">
 
-                            <tbody *ngIf="!(query.includes('-USD')||query.includes('-usd'))">
+                            <tbody *ngIf="!query.includes('-USD')">
                                 <tr>
                                     <th scope="row">Sector</th>
                                     <td>{{ results[0].sector }}</td>
@@ -106,7 +106,7 @@
 
                             </tbody>
 
-                            <tbody *ngIf="query.includes('-USD')||query.includes('-usd')">
+                            <tbody *ngIf="query.includes('-USD')">
 
                                 <tr>
                                     <th scope="row">Sector</th>
@@ -162,6 +162,7 @@
 
                     </div>
                 </div>
+
             </div>
 
             <div class="right-top">
@@ -270,16 +271,20 @@
 
         </div>
 
-        <br>
 
         <div class="container_graph">
-            <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
-                <option value="1d">1 Day</option>
-                <option value="2m">2 Months</option>
-                <option value="6m">6 Months</option>
-                <option value="1y">1 Year</option>
-                <option value="5y">5 Years</option>
-            </select>
+
+            <div class="select-container">
+                <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+                    <option value="1d">1 Day</option>
+                    <option value="2m">2 Months</option>
+                    <option value="6m">6 Months</option>
+                    <option value="1y">1 Year</option>
+                    <option value="5y">5 Years</option>
+                </select>
+            </div>
+
+            <br><br>
 
             <div class="chart-container">
                 <app-price-chart [data]="graph_data"></app-price-chart>

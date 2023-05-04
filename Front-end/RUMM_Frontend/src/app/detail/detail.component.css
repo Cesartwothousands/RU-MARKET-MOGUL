@@ -102,25 +102,29 @@ app-candlestick-chart {
     flex: 1;
 }
 
-
 .main_contanier .right-top {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Align items to the top */
 }
 
 .main_contanier .left-top {
     flex: 2;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
 }
 
 .left-top-inner {
     flex: 2;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    width: 100%;
+    padding: 20px;
 }
 
 .user-info {
@@ -182,14 +186,24 @@ app-candlestick-chart {
     height: 100%;
 }
 
-.stock-info .custom-table {
-    width: 115%;
+.container_graph {
+    position: relative;
 }
 
-.crypto-info .custom-table {
-    width: 115%;
+.select-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
 }
 
-.custom-table {
-    width: 115%;
+.select-container select {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    width: 150%;
 }
