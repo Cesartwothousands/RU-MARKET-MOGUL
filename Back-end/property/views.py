@@ -115,6 +115,7 @@ class UserInfoView(APIView):
         stocks_serialized = UserInfoStockSerializer(stocks, many=True)
         user_info = {
             'name': user.username,
+            'email': user.email,
             'cash': user.cash,
             'stocks': stocks_serialized.data
         }

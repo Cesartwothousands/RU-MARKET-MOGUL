@@ -22,8 +22,9 @@ To do:
         - [x] Info
         - [x] Button Size and Color
 - [ ] Portfolio
-    - [ ] Personal Card
-    - [ ] Total Value
+    - [ ] Schedule
+    - [x] Personal Card
+    - [x] Total Value
 -  [ ] User
     - [ ] Personal Card
     - [ ] Build Reg Login and redirect

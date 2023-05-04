@@ -9,3 +9,36 @@
     width: 100%;
     /* Remove the height attribute */
 }
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    font-size: 24px;
+    font-weight: bold;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #4B0082;
+}

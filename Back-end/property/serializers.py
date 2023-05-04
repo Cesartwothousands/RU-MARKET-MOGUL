@@ -18,5 +18,6 @@ class UserInfoStockSerializer(serializers.ModelSerializer):
 
 class UserInfoSerializer(serializers.Serializer):
     name = serializers.CharField()
+    email = serializers.EmailField()
     cash = serializers.DecimalField(max_digits=10, decimal_places=2)
     stocks = UserInfoStockSerializer(many=True)
