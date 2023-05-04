@@ -1,7 +1,31 @@
+.highlight {
+    color: #f56565;
+    font-weight: bold;
+}
+
+.greeting {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4a5568;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 18px;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.card-text:last-child {
+    margin-bottom: 0;
+}
+
+
 .chart-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
+
 }
 
 app-price-chart,
@@ -9,6 +33,7 @@ app-candlestick-chart {
     flex: 1;
     margin: 0 10px;
     /* Add some space between the components */
+
 }
 
 .custom-button {
@@ -52,11 +77,11 @@ app-candlestick-chart {
 }
 
 .custom-card .label-title {
-    font-size: 20px;
+    font-size: 28px;
 }
 
 .custom-card .label-method {
-    font-size: 14px;
+    font-size: 16px;
     display: block;
 }
 
@@ -64,4 +89,107 @@ app-candlestick-chart {
     margin-top: 10px;
     width: 60%;
     align-self: center;
+}
+
+.main_contanier {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main_contanier .top {
+    display: flex;
+    flex: 1;
+}
+
+
+.main_contanier .right-top {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align items to the top */
+}
+
+.main_contanier .left-top {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+.left-top-inner {
+    flex: 2;
+}
+
+.user-info {
+    flex: 2;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 0;
+}
+
+.prediction-card {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 0;
+}
+
+.bottom {
+    flex: 1;
+    display: flex;
+    background-color: lightyellow;
+    padding: 20px;
+}
+
+
+.stock-info h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0a338d;
+    margin-bottom: 10px;
+}
+
+.stock-info tbody {
+    font-size: 18px;
+    color: #2e548d;
+    margin-bottom: 10px;
+}
+
+.crypto-info h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #7134eb;
+    margin-bottom: 10px;
+}
+
+.crypto-info tbody {
+    font-size: 18px;
+    color: #2e548d;
+    margin-bottom: 10px;
+}
+
+.center-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.stock-info .custom-table {
+    width: 115%;
+}
+
+.crypto-info .custom-table {
+    width: 115%;
+}
+
+.custom-table {
+    width: 115%;
 }

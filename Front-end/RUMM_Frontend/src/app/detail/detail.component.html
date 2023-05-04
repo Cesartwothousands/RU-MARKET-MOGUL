@@ -1,171 +1,309 @@
 <div *ngIf="results.length > 0">
     <h2>Search results for "{{ query }}":</h2>
 
-    <div class="card" *ngIf="userDetailsAvailable">
-        <div class="card-body">
-            <h5 class="card-title">Hello, {{ userDetailsWithStockInfo.username }}</h5>
-            <p class="card-text">
-                You own {{ userDetailsWithStockInfo.share }} share(s) of {{ results[0].longname }}.
+    <div class="main_contanier">
+
+        <div class="top">
+
+            <div class="left-top">
+
+                <div class="user-info">
+                    <div class="card" style="width:50rem;" *ngIf="userDetailsAvailable">
+                        <div class="card-body">
+                            <h5 class="card-title greeting">Hello, {{ userDetailsWithStockInfo.username }}</h5>
+
+                            <p class="card-text">
+                                You own <span class="highlight">{{ userDetailsWithStockInfo.share }}</span> share(s) of
+                                <span class="highlight">{{ results[0].longname }}</span>.
+                                <br>
+                                You have <span class="highlight">{{ userDetailsWithStockInfo.cash }}</span> USD left in
+                                Balance.
+                            </p>
+
+                            <p class="card-text">
+                                Current Price per Share: <span class="highlight">{{ userDetailsWithStockInfo.stock_price
+                                    }}</span>
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3 center-wrapper">
+                                    <app-buy [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash"
+                                        [price]="results[0].current_price"></app-buy>
+                                </div>
+
+                                <div class="col-md-6 center-wrapper">
+                                    <app-sell [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash"
+                                        [price]="results[0].current_price"
+                                        [availableShares]="userDetailsWithStockInfo.share"></app-sell>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
                 <br>
-                You have {{ userDetailsWithStockInfo.cash }} USD left.
-            </p>
-            <p class="card-text">
-                Current Price per Share: {{ userDetailsWithStockInfo.stock_price }}
-            </p>
-            <app-buy [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash"
-                [price]="results[0].current_price"></app-buy>
-            <app-sell [stockSymbol]="query" [cash]="userDetailsWithStockInfo.cash" [price]="results[0].current_price"
-                [availableShares]="userDetailsWithStockInfo.share"></app-sell>
+
+                <div class="left-top-inner">
+                    <div [ngClass]="{'stock-info': !query.includes('-USD'), 'crypto-info': query.includes('-USD')}">
+                        <h1>{{ results[0].longname }} ({{ results[0].symbol }})</h1>
+
+                        <table class="table table-hover table-bordered custom-table">
+
+                            <tbody *ngIf="!(query.includes('-USD')||query.includes('-usd'))">
+                                <tr>
+                                    <th scope="row">Sector</th>
+                                    <td>{{ results[0].sector }}</td>
+                                    <th scope="row">Website</th>
+                                    <td><a href="{{ results[0].website }}" target="_blank">{{ results[0].website }}
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Current Price</th>
+                                    <td>{{ results[0].current_price }}</td>
+                                    <th scope="row">Previous Close</th>
+                                    <td>{{ results[0].previous_close }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Price Change</th>
+                                    <td>{{ results[0].price_change }}</td>
+                                    <th scope="row">Percentage</th>
+                                    <td>{{ results[0].price_change_percent }}%</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Volume</th>
+                                    <td>{{ results[0].volume }}</td>
+                                    <th scope="row">Yahoo Choice</th>
+                                    <td><a href="https://finance.yahoo.com/quote/{{ results[0].symbol }}"
+                                            target="_blank">{{
+                                            results[0].recommendationKey }}
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Day Low</th>
+                                    <td>{{ results[0].day_low }}</td>
+                                    <th scope="row">Day High</th>
+                                    <td>{{ results[0].day_high }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Year Low</th>
+                                    <td>{{ results[0].year_low }}</td>
+                                    <th scope="row">Year High</th>
+                                    <td>{{ results[0].year_high }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" colspan="2">Market Cap</th>
+                                    <td colspan="2">{{ results[0].marketCap }}</td>
+                                </tr>
+
+                            </tbody>
+
+                            <tbody *ngIf="query.includes('-USD')||query.includes('-usd')">
+
+                                <tr>
+                                    <th scope="row">Sector</th>
+                                    <td>Crypto</td>
+                                    <th scope="row">Twitter</th>
+                                    <td>{{ results[0].twitter }}
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Current Price</th>
+                                    <td>{{ results[0].current_price }}</td>
+                                    <th scope="row">Previous Close</th>
+                                    <td>{{ results[0].previous_close }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Price Change</th>
+                                    <td>{{ results[0].price_change }}</td>
+                                    <th scope="row">Percentage</th>
+                                    <td>{{ results[0].price_change_percent }}%</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Volume</th>
+                                    <td>{{ results[0].volume }}</td>
+                                    <th scope="row">Average Volume</th>
+                                    <td>{{ results[0].averageVolume }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Day Low</th>
+                                    <td>{{ results[0].day_low }}</td>
+                                    <th scope="row">Day High</th>
+                                    <td>{{ results[0].day_high }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">Year Low</th>
+                                    <td>{{ results[0].year_low }}</td>
+                                    <th scope="row">Year High</th>
+                                    <td>{{ results[0].year_high }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" colspan="2">Market Cap</th>
+                                    <td colspan="2">{{ results[0].marketCap }}</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-top">
+
+                <div class="prediction-card">
+                    <div class="custom-card">
+                        <!-- stock-prediction.component.html -->
+                        <div class="card" style="width: 27rem;">
+                            <div class="card-body">
+
+                                <!-- VPT Trend & RSI Value -->
+                                <h3 class="label-title">
+                                    Daily Prediction
+                                    <span class="label-method">using Volume-Price and Strength Index</span>
+                                </h3>
+                                <div *ngIf="stock_prediction.rsi_value === 2 || (stock_prediction.rsi_value !== 1 && stock_prediction.vpt_trend === 2)"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:green">
+                                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
+                                    <span>Buy</span>
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
+                                </div>
+
+                                <div *ngIf="stock_prediction.rsi_value === 1 || (stock_prediction.rsi_value !== 2 && stock_prediction.vpt_trend === 1)"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
+                                    <span>Sell</span>
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
+                                </div>
+
+                                <div *ngIf="stock_prediction.rsi_value === 0 && stock_prediction.vpt_trend === 0"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:orange">
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px;">horizontal_rule</mat-icon>
+                                    <span>Hold</span>
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:orange">horizontal_rule</mat-icon>
+                                </div>
+
+
+
+                                <h3 class="label-title">
+                                    Weekly Prediction
+                                    <span class="label-method">using MACD</span>
+                                </h3>
+                                <div *ngIf="stock_prediction.macd_trend === 2"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:green">
+                                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
+                                    Buy
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
+                                </div>
+
+                                <div *ngIf="stock_prediction.macd_trend === 1"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
+                                    Sell
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
+                                </div>
+
+                                <div *ngIf="stock_prediction.macd_trend === 0"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:orange">
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px;">horizontal_rule</mat-icon>
+                                    Hold
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:orange">horizontal_rule</mat-icon>
+                                </div>
+
+
+                                <!-- HMM Prediction -->
+                                <h3 class="label-title">
+                                    Yearly Prediction
+                                    <span class="label-method">using Hidden Markov Models</span>
+                                </h3>
+                                <div *ngIf="stock_prediction.HMM_prediction ===1"
+                                    style="display: flex; align-items: center; align-self:center;font-size: 40px; color:green">
+                                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
+                                    Bullish
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
+                                </div>
+                                <div *ngIf="stock_prediction.HMM_prediction === 0"
+                                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
+                                    Bearish
+                                    <mat-icon
+                                        style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
+                                </div>
+
+                                <button class="custom-button" (click)="onStartPrediction()"><mat-icon>
+                                        attach_money</mat-icon>
+                                    Get Prediction</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
+
+        <br>
+
+        <div class="container_graph">
+            <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
+                <option value="1d">1 Day</option>
+                <option value="2m">2 Months</option>
+                <option value="6m">6 Months</option>
+                <option value="1y">1 Year</option>
+                <option value="5y">5 Years</option>
+            </select>
+
+            <div class="chart-container">
+                <app-price-chart [data]="graph_data"></app-price-chart>
+                <app-candlestick-chart [data]="graph_data"></app-candlestick-chart>
+            </div>
+        </div>
+
     </div>
 
+    <div *ngIf="results.length === 0">
 
-
-    <h2>{{ results[0].longname }} ({{ results[0].symbol }})</h2>
-    <p>Sector: {{ results[0].sector }}</p>
-    <p>Current Price: {{ results[0].current_price }}</p>
-    <p>Previous Close: {{ results[0].previous_close }}</p>
-    <p>Day Low: {{ results[0].day_low }}</p>
-    <p>Day High: {{ results[0].day_high }}</p>
-    <p>Year Low: {{ results[0].year_low }}</p>
-    <p>Year High: {{ results[0].year_high }}</p>
-    <p>Volume: {{ results[0].volume }}</p>
-    <p>Market Cap: {{ results[0].marketCap }}</p>
-    <p>Average Volume: {{ results[0].averageVolume }}</p>
-    <p>Target High Price: {{ results[0].targetHighPrice }}</p>
-    <p>Target Low Price: {{ results[0].targetLowPrice }}</p>
-    <p>Target Median Price: {{ results[0].targetMedianPrice }}</p>
-    <p>Recommendation Mean: {{ results[0].recommendationMean }}</p>
-    <p>Recommendation Key: {{ results[0].recommendationKey }}</p>
-    <p>Website: {{ results[0].website }}</p>
-    <p>Twitter: {{ results[0].twitter }}</p>
-    <p>Price Change: {{ results[0].price_change }}</p>
-    <p>Price Change Percent: {{ results[0].price_change_percent }}</p>
-
-    <h3>Stock Prediction</h3>
-    <p>VPT Trend: {{ stock_prediction.vpt_trend }}</p>
-    <p>RSI Value: {{ stock_prediction.rsi_value }}</p>
-    <p>MACD Trend: {{ stock_prediction.macd_trend }}</p>
-    <p>HMM Prediction: {{ stock_prediction.HMM_prediction }}</p>
-
-
-    <div class="custom-card">
-        <!-- stock-prediction.component.html -->
-        <div class="card" style="width: 25rem;">
-            <div class="card-body">
-
-                <!-- VPT Trend & RSI Value -->
-                <h3 class="label-title">
-                    Daily Prediction
-                    <span class="label-method">using Volume-Price and Strength Index</span>
-                </h3>
-                <div *ngIf="stock_prediction.rsi_value === 2 || (stock_prediction.rsi_value !== 1 && stock_prediction.vpt_trend === 2)"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:green">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
-                    <span>Buy</span>
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
-                </div>
-
-                <div *ngIf="stock_prediction.rsi_value === 1 || (stock_prediction.rsi_value !== 2 && stock_prediction.vpt_trend === 1)"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
-                    <span>Sell</span>
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
-                </div>
-
-                <div *ngIf="stock_prediction.rsi_value === 0 && stock_prediction.vpt_trend === 0"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:orange">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">horizontal_rule</mat-icon>
-                    <span>Hold</span>
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:orange">horizontal_rule</mat-icon>
-                </div>
-
-
-
-                <h3 class="label-title">
-                    Weekly Prediction
-                    <span class="label-method">using MACD</span>
-                </h3>
-                <div *ngIf="stock_prediction.macd_trend === 2"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:green">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
-                    Buy
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
-                </div>
-
-                <div *ngIf="stock_prediction.macd_trend === 1"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
-                    Sell
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
-                </div>
-
-                <div *ngIf="stock_prediction.macd_trend === 0"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:orange">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">horizontal_rule</mat-icon>
-                    Hold
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:orange">horizontal_rule</mat-icon>
-                </div>
-
-
-                <!-- HMM Prediction -->
-                <h3 class="label-title">
-                    Yearly Prediction
-                    <span class="label-method">using Hidden Markov Models</span>
-                </h3>
-                <div *ngIf="stock_prediction.HMM_prediction ===1"
-                    style="display: flex; align-items: center; align-self:center;font-size: 40px; color:green">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_upward</mat-icon>
-                    Bullish
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:green">arrow_upward</mat-icon>
-                </div>
-                <div *ngIf="stock_prediction.HMM_prediction === 0"
-                    style="display: flex; align-items: center; align-self:center; font-size: 40px; color:red">
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px;">arrow_downward</mat-icon>
-                    Bearish
-                    <mat-icon style="height: 50px;width: 50px; font-size: 50px; color:red">arrow_downward</mat-icon>
-                </div>
-
-                <button class="custom-button" (click)="onStartPrediction()"><mat-icon> attach_money</mat-icon>
-                    Get Prediction</button>
+        <div class="container">
+            <div class="alert alert-danger">
+                <h2 class="text-center">Symbol "{{query}}" you have entered does not correspond to any known stock or
+                    crypto.
+                </h2>
+                <h3 class="text-left">I suggest that:</h3>
+                <ul>
+                    <li>Make sure that you have spelled the symbol correctly.</li>
+                    <li>Crypto symbol needs to include "-USD".</li>
+                    <li>Check if the symbol belongs to the correct exchange or market.</li>
+                    <li>Verify if the symbol is still active and trading.</li>
+                    <li>Ensure that the symbol is not a mutual fund or an index.</li>
+                </ul>
             </div>
         </div>
     </div>
-
-
-
-
-    <div class="container_graph">
-        <select [(ngModel)]="selectedInterval" (change)="onIntervalChange()">
-            <option value="1d">1 Day</option>
-            <option value="2m">2 Months</option>
-            <option value="6m">6 Months</option>
-            <option value="1y">1 Year</option>
-            <option value="5y">5 Years</option>
-        </select>
-
-        <div class="chart-container">
-            <app-price-chart [data]="graph_data"></app-price-chart>
-            <app-candlestick-chart [data]="graph_data"></app-candlestick-chart>
-        </div>
-    </div>
-</div>
-
-<div *ngIf="results.length === 0">
-
-    <div class="container">
-        <div class="alert alert-danger">
-            <h2 class="text-center">Symbol "{{query}}" you have entered does not correspond to any known stock or
-                crypto.
-            </h2>
-            <h3 class="text-left">I suggest that:</h3>
-            <ul>
-                <li>Make sure that you have spelled the symbol correctly.</li>
-                <li>Crypto symbol needs to include "-USD".</li>
-                <li>Check if the symbol belongs to the correct exchange or market.</li>
-                <li>Verify if the symbol is still active and trading.</li>
-                <li>Ensure that the symbol is not a mutual fund or an index.</li>
-            </ul>
-        </div>
-    </div>
-</div>

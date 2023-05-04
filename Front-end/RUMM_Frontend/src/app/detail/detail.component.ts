@@ -169,3 +169,105 @@ interface DetailInfo {
     price_change_percent: number;
     start_date: string;
 }
+
+/**
+ *                     <p>Sector: {{ results[0].sector }}</p>
+                    <p>Current Price: {{ results[0].current_price }}</p>
+                    <p>Previous Close: {{ results[0].previous_close }}</p>
+                    <p>Day Low: {{ results[0].day_low }}</p>
+                    <p>Day High: {{ results[0].day_high }}</p>
+                    <p>Year Low: {{ results[0].year_low }}</p>
+                    <p>Year High: {{ results[0].year_high }}</p>
+                    <p>Volume: {{ results[0].volume }}</p>
+                    <p>Market Cap: {{ results[0].marketCap }}</p>
+                    <p>Average Volume: {{ results[0].averageVolume }}</p>
+                    <p>Target High Price: {{ results[0].targetHighPrice }}</p>
+                    <p>Target Low Price: {{ results[0].targetLowPrice }}</p>
+                    <p>Target Median Price: {{ results[0].targetMedianPrice }}</p>
+                    <p>Recommendation Mean: {{ results[0].recommendationMean }}</p>
+                    <p>Recommendation Key: {{ results[0].recommendationKey }}</p>
+                    <p>Website: {{ results[0].website }}</p>
+                    <p>Twitter: {{ results[0].twitter }}</p>
+                    <p>Price Change: {{ results[0].price_change }}</p>
+                    <p>Price Change Percent: {{ results[0].price_change_percent }}</p>
+ */
+
+/**
+ * Sector: Technology
+
+Current Price: 167.45
+
+Previous Close: 168.54
+
+Day Low: 167.16
+
+Day High: 170.92
+
+Year Low: 124.17
+
+Year High: 176.15
+
+Volume: 59322913
+
+Market Cap: 2666624450560
+
+Average Volume: 59215580
+
+Target High Price: 205
+
+Target Low Price: 116
+
+Target Median Price: 174.5
+
+Recommendation Mean: 2
+
+Recommendation Key: buy
+
+Website: https://www.apple.com
+
+Twitter:
+
+Price Change: -1.09
+
+Price Change Percent: -0.65
+*/
+
+/**
+ * Sector:
+
+Current Price: 1903.88
+
+Previous Close: 1905.15
+
+Day Low: 1898.4557
+
+Day High: 1908.418
+
+Year Low: 896.109
+
+Year High: 2948.9607
+
+Volume: 8527784960
+
+Market Cap: 229181521920
+
+Average Volume: 9044504166
+
+Target High Price:
+
+Target Low Price:
+
+Target Median Price:
+
+Recommendation Mean:
+
+Recommendation Key:
+
+Website:
+
+Twitter: "https://twitter.com/ethereum"
+
+Price Change: -1.27
+
+Price Change Percent: -0.07
+ */
