@@ -85,12 +85,10 @@ def fetch_stock_prediction(request, symbol):
 
     # Determine the MACD trend
     macd_trend = 0
-    if latest_data["MACD"].values[0] > latest_data["Signal"].values[0]:
+    if latest_data["MACD"].values[0] >= latest_data["Signal"].values[0]:
         macd_trend = 2  # "Bullish"
     elif latest_data["MACD"].values[0] < latest_data["Signal"].values[0]:
         macd_trend = 1  # "Bearish"
-    else:
-        macd_trend = 0  # "Neutral"
 
     ########################################
 
