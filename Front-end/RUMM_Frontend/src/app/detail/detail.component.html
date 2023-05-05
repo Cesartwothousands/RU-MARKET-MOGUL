@@ -293,22 +293,22 @@
         </div>
 
     </div>
+</div>
 
-    <div *ngIf="results.length === 0">
-
-        <div class="container">
-            <div class="alert alert-danger">
-                <h2 class="text-center">Symbol "{{query}}" you have entered does not correspond to any known stock or
-                    crypto.
-                </h2>
-                <h3 class="text-left">I suggest that:</h3>
-                <ul>
-                    <li>Make sure that you have spelled the symbol correctly.</li>
-                    <li>Crypto symbol needs to include "-USD".</li>
-                    <li>Check if the symbol belongs to the correct exchange or market.</li>
-                    <li>Verify if the symbol is still active and trading.</li>
-                    <li>Ensure that the symbol is not a mutual fund or an index.</li>
-                </ul>
-            </div>
+<div *ngIf="results.length === 0">
+    <div class="container">
+        <div class="alert alert-danger">
+            <h2 class="text-center">Symbol "{{query}}" you have entered does not correspond to any known stock or
+                crypto.
+            </h2>
+            <h3 class="text-left">I suggest that:</h3>
+            <ul>
+                <li>Make sure that you have spelled the symbol correctly.</li>
+                <li>Crypto symbol needs to include "-USD".</li>
+                <li>Check if the symbol belongs to the correct exchange or market.</li>
+                <li>Verify if the symbol is still active and trading.</li>
+                <li>Ensure that the symbol is not a mutual fund or an index.</li>
+            </ul>
         </div>
     </div>
+</div>

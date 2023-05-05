@@ -4,6 +4,17 @@
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+html {
+    height: 100%;
+    background: linear-gradient(to bottom left, #ffffff, #d6eff7);
+    /* Diagonal gradient from light blue to lighter blue */
+}
+
+body {
+    min-height: 100%;
+    background: linear-gradient(to bottom left, #ffffff, #d6eff7);
+}
+
 
 .custom-navbar .container {
     display: flex;
@@ -49,11 +60,12 @@
 
 
 .custom-navbar {
-    background-color: #aeaeae;
-    /* Light background color */
+    background: linear-gradient(to top left, #ffffff, #429bb9);
+    /* Diagonal gradient from light blue to lighter blue */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     /* Subtle box shadow for a more polished look */
 }
+
 
 .custom-navbar .navbar-brand {
     font-weight: 600;

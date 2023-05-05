@@ -86,12 +86,12 @@ export class PriceChartComponent implements OnInit, OnChanges {
 
         const mousemove = (event: MouseEvent, d: any, i: number, data: any[]) => {
             const [xPos, yPos] = d3.pointer(event);
+            //console.log(xPos, yPos);
             tooltip
-                .style('left', (event.pageX + 15) + 'px')
-                .style('top', (event.pageY - 15) + 'px')
+                .style('left', (xPos - 60) + 'px') // Adjusted here
+                .style('top', (yPos + 250) + 'px') // Adjusted here
                 .html(`Date: ${d.Date ?? d.Datetime}<br/>Value: ${d.value}`);
         };
-
 
         const mouseleave = (event: MouseEvent, d: any) => {
             tooltip.style('opacity', 0);

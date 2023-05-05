@@ -34,10 +34,12 @@ To do:
 - [x] Nav Bar
     - [x] Size
     - [x] Color
-- [ ] Home Page
+- [x] Home Page
     - [x] Brand
-    - [ ] Background Color
+    - [x] Background Color
     - [x] Form Size
 -----
-- [ ] Hover in Price chart
+- [x] Hover in Price chart
 - [ ] Data Analysis
+- [ ] Good Introduction README
+
