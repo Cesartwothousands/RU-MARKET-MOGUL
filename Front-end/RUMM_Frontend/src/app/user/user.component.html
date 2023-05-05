@@ -1,5 +1,26 @@
-<h1>User Profile</h1>
+<div class="container mt-2">
 
-<button (click)="onLogout()">Logout</button>
 
-<app-init-cash></app-init-cash>
+    <div class="card">
+        <div class="card-header">
+            <h1 class="mb-2">User Profile</h1>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="card-text"><span class="highlight">Name: {{userInfo?.name}} </span> </p>
+                    <p class="card-text"><span class="highlight">Email: {{userInfo?.email}} </span> </p>
+                    <p class="card-text">Cash: $ {{userInfo?.cash}}</p>
+                    <p class="card-text">Total Assets: $ {{totalAssets}}</p>
+                    <div class="d-flex mt-3">
+                        <button (click)="onLogout()" class="btn btn-danger w-50">Logout</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <app-init-cash></app-init-cash>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

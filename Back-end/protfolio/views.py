@@ -118,6 +118,7 @@ class AllPortfolioTable(APIView):
 
             for stock in user_stocks:
                 stocks_data.append({
+                    'email':    user.email,
                     'symbol': stock.stock_symbol,
                     'share': stock.share,
                     'user': user.username,

@@ -1,5 +1,14 @@
-<div>
-    <label for="cash">Cash: </label>
-    <input [(ngModel)]="cash" id="cash" type="number">
-    <button (click)="initializeCash()">Initialize Cash</button>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Initialize Cash</h5>
+        <div class="input-group mb-3">
+            <label for="cash" class="input-group-text">Cash</label>
+            <input [(ngModel)]="cash" id="cash" type="number" class="form-control">
+        </div>
+
+        <div style="text-align: center;">
+            <button (click)="initializeCash()" class="btn btn-primary">Initialize Cash</button>
+        </div>
+
+    </div>
 </div>

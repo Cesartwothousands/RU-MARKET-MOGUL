@@ -25,17 +25,17 @@ To do:
     - [x] Schedule
     - [x] Personal Card
     - [x] Total Value
--  [ ] User
-    - [ ] Personal Card
+-  [x] User
+    - [x] Personal Card
     - [x] Build Reg Login and redirect
-- [ ] Community
-    - [ ] Brand
-    - [ ] Text, Size, Color
+- [x] Community
+    - [x] Brand
+    - [x] Text, Size, Color
 - [x] Nav Bar
     - [x] Size
     - [x] Color
 - [ ] Home Page
-    - [ ] Brand
+    - [x] Brand
     - [ ] Background Color
     - [x] Form Size
 -----

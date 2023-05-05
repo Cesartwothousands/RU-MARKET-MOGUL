@@ -1,14 +1,27 @@
-<mat-accordion>
-    <mat-expansion-panel *ngFor="let userPortfolio of userPortfolios">
-        <mat-expansion-panel-header>
-            <span mat-panel-title>
-                {{ userPortfolio[0]?.user }}
-            </span>
-        </mat-expansion-panel-header>
+<div class="container mt-2">
+    <h1 class="text-center mb-4">Most Active Users</h1>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let userPortfolio of userPortfolios">
+            <mat-expansion-panel-header>
+                <span mat-panel-title class="user-name">
+                    <a [href]="'mailto:' + userPortfolio[0]?.email">{{ userPortfolio[0]?.user }}</a>
+                </span>
+            </mat-expansion-panel-header>
 
-        <div *ngFor="let stock of userPortfolio">
-            <span>{{ stock.symbol }}:</span>
-            <span>{{ stock.share }}</span>
-        </div>
-    </mat-expansion-panel>
-</mat-accordion>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Stock/Crypto Symbol</th>
+                        <th>Share(s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stock of userPortfolio">
+                        <td>{{ stock.symbol }}</td>
+                        <td>{{ stock.share }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

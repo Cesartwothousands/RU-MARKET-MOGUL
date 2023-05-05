@@ -1,0 +1,15 @@
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #3f51b5;
+}
+
+.highlight {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.card-text {
+    font-size: 1.1rem;
+}
