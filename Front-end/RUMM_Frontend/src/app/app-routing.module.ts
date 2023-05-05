@@ -18,11 +18,12 @@ const routes: Routes = [
     { path: 'stocks', component: StocksComponent },
     { path: 'crypto', component: CryptoComponent },
     { path: 'user', component: UserComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+
     { path: 'discussion', component: DiscussionComponent },
     { path: 'detail', component: HomeComponent },
     { path: 'detail/:query', component: DetailComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'login', component: LoginComponent },
     { path: 'portfolio', component: ProtfoliosComponent },
     { path: 'share', component: ShareComponent }
 ];

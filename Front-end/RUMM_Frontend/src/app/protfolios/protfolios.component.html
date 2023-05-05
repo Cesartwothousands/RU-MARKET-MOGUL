@@ -1,20 +1,38 @@
-<div class="card">
-    <div class="card-header">
-        Personal Information
+<div class="container">
+    <div class="left">
+        <div class="card">
+            <div class="card-header">
+                Personal Information
+            </div>
+
+            <div class="card-body">
+                <p class="card-text"><span class="highlight">Name: {{userInfo?.name}} </span> </p>
+                <p class="card-text"><span class="highlight">Email: {{userInfo?.email}} </span> </p>
+                <p class="card-text">Cash: $ {{userInfo?.cash}}</p>
+                <p class="card-text">Total Assets: $ {{totalAssets}}</p>
+            </div>
+        </div>
+
+        <br>
+
+        <ag-grid-angular [enableCellTextSelection]="true" [suppressMovableColumns]="true" class="ag-theme-alpine"
+            [rowData]="rowData" [columnDefs]="columnDefs" [defaultColDef]="{ resizable: true, filter: false }"
+            [domLayout]="'autoHeight'">
+        </ag-grid-angular>
+
     </div>
-    <div class="card-body">
-        <p class="card-text"><span class="highlight">Name: {{userInfo?.name}} </span> </p>
-        <p class="card-text"><span class="highlight">Email: {{userInfo?.email}} </span> </p>
-        <p class="card-text">Cash: ${{userInfo?.cash}}</p>
-        <p class="card-text">Total Assets: ${{totalAssets}}</p>
+    <div class="right">
+        <div class="right-content">
+            <app-treemap></app-treemap>
+        </div>
     </div>
+
 </div>
 
-<app-treemap></app-treemap>
+
+
+
 
 <div class="container">
-    <ag-grid-angular [enableCellTextSelection]="true" [suppressMovableColumns]="true" class="ag-theme-alpine"
-        [rowData]="rowData" [columnDefs]="columnDefs" [defaultColDef]="{ resizable: true, filter: false }"
-        [domLayout]="'autoHeight'">
-    </ag-grid-angular>
+
 </div>

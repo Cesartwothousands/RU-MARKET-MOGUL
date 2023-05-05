@@ -50,6 +50,11 @@ export class TreemapComponent implements AfterViewInit {
             .attr('width', width)
             .attr('height', height);
 
+        // Add a group element to the svg
+        this.svg
+            .attr('transform', 'translate(0,-200)'); // Change the value '-20' to control the amount of translation
+
+
         // create a layout
         const layout = d3.treemap<{ name: string; value: number; change: number; }>()
             .size([width, height])
@@ -111,7 +116,6 @@ export class TreemapComponent implements AfterViewInit {
             .attr('text-anchor', 'middle')
             .attr('fill', 'black');
 
-
         const renderer = this.elementRef.nativeElement.ownerDocument.defaultView!.Renderer2;
 
 
@@ -119,8 +123,8 @@ export class TreemapComponent implements AfterViewInit {
             .on('mouseover', (event: any, d: any) => {
                 d3.select(this.tooltip.nativeElement)
                     .style('opacity', 1)
-                    .style('left', (d.x1 + (d.x1 - d.x0) / 2) + 'px')
-                    .style('top', (d.y1 + 10) + 'px')
+                    .style('left', (d.x1 + (d.x1 - d.x0) * 2.5) + 'px')
+                    .style('top', (d.y1 + (d.y1 - d.y0) * 0.5) + 'px')
                     .html(`Symbol: ${d.data.name}<br>Value: ${d.data.value}<br>Realtime Change: ${d.data.change}`);
             })
             .on('mouseout', () => {

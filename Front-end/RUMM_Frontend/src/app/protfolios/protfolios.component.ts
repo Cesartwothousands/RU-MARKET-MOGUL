@@ -27,6 +27,7 @@ export class ProtfoliosComponent implements OnInit {
                 //console.log(typeof (this.rowData[0].value))
                 this.getTotalValue();
                 //console.log(this.totalValue);
+                this.addPercentageToRowData(); // Add this line
             }
         );
 
@@ -48,11 +49,21 @@ export class ProtfoliosComponent implements OnInit {
         //{ field: 'shortname', headerName: 'Name', sortable: true, flex: 2 },
         //{ field: 'longname', headerName: 'Long Name', sortable: true, flex: 3 },
 
-        { field: 'share', headerName: 'Share', sortable: true, flex: 1 },
-        { field: 'value', headerName: 'Value', sortable: true, flex: 1 },
-        { field: 'change', headerName: 'Change', sortable: true, flex: 1, cellStyle: (params: CellClassParams) => params.value < 0 ? { color: 'red' } : { color: 'green' } },
-        { field: 'price_change', headerName: '% Change', sortable: true, flex: 1, cellStyle: (params: CellClassParams) => params.value < 0 ? { color: 'red' } : { color: 'green' } },
+        { field: 'share', headerName: 'Share(s)', sortable: true, flex: 1 },
+        { field: 'value', headerName: 'Value', sortable: true, flex: 1.5 },
+        {
+            field: 'percentage',
+            headerName: 'Percentage',
+            sortable: true,
+            flex: 1,
+            cellRenderer: (params: any) => {
+                return params.value.toFixed(2) + '%'; // Format the number as a string with 2 decimal places and a percentage sign
+            }
+        },
+        { field: 'price_change', headerName: 'Change', sortable: true, flex: 1, cellStyle: (params: CellClassParams) => params.value < 0 ? { color: 'red' } : { color: 'green' } },
+        { field: 'change', headerName: '% Change', sortable: true, flex: 1, cellStyle: (params: CellClassParams) => params.value < 0 ? { color: 'red' } : { color: 'green' } },
         { field: 'sector', headerName: 'Sector', sortable: true, flex: 2 },
+
     ];
 
     getTotalValue(): void {
@@ -81,9 +92,19 @@ export class ProtfoliosComponent implements OnInit {
 
     calculateTotalAssets() {
         if (this.totalValue && this.userInfo && this.userInfo.cash !== undefined) {
-            this.totalAssets = this.totalValue + this.userInfo.cash;
+            this.totalAssets = parseFloat((this.totalValue + this.userInfo.cash).toFixed(3)); // Keep totalAssets with 3 decimal places
         }
         console.log("T", this.totalAssets);
+    }
+
+
+    addPercentageToRowData() {
+        if (this.totalAssets && this.rowData && this.rowData.length > 0) {
+            this.rowData = this.rowData.map((item: any) => {
+                const percentage = (item.value / this.totalAssets) * 100;
+                return { ...item, percentage }; // Add the 'percentage' property as a number to each rowData element
+            });
+        }
     }
 
 }

@@ -21,13 +21,13 @@ To do:
     - [x] Personal Card
         - [x] Info
         - [x] Button Size and Color
-- [ ] Portfolio
-    - [ ] Schedule
+- [x] Portfolio
+    - [x] Schedule
     - [x] Personal Card
     - [x] Total Value
 -  [ ] User
     - [ ] Personal Card
-    - [ ] Build Reg Login and redirect
+    - [x] Build Reg Login and redirect
 - [ ] Community
     - [ ] Brand
     - [ ] Text, Size, Color
@@ -39,4 +39,5 @@ To do:
     - [ ] Background Color
     - [x] Form Size
 -----
+- [ ] Hover in Price chart
 - [ ] Data Analysis

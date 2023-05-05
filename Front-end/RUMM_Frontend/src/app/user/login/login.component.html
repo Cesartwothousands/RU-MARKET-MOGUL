@@ -1,6 +1,19 @@
-<div>
-    <h2>Login</h2>
-    <input [(ngModel)]="username" placeholder="Username">
-    <input [(ngModel)]="password" placeholder="Password" type="password">
-    <button (click)="login(username, password)">Login</button>
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2>Login</h2>
+            <form>
+                <div class="form-group">
+                    <input [(ngModel)]="username" name="loginUsername" placeholder="Username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input [(ngModel)]="password" name="loginPassword" placeholder="Password" type="password"
+                        class="form-control">
+                </div>
+                <button (click)="login(username, password)" [routerLink]="['/']" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+
+    </div>
 </div>
