@@ -5,8 +5,10 @@ I offer three prediction services: Daily Prediction using Volume-Price and Stren
 
 ## How to use?
 download here: https://github.com/Cesartwothousands/RU-MARKET-MOGUL
+```shell
 run python manage.py runserver in 'Back-end'
 run ng serve --open in 'RUMM_Frontend'
+```
 
 ```C
 // Author: Cesar
