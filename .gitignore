@@ -1,6 +1,6 @@
 Local Dataset
 __pycache__
 myenv
-
 processed_stock_data.csv
 trained_hmm_model_3_10000.pkl
+trained_hmm_model_3_1.pkl

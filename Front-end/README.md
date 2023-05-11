@@ -40,6 +40,6 @@ To do:
     - [x] Form Size
 -----
 - [x] Hover in Price chart
-- [ ] Data Analysis
-- [ ] Good Introduction README
+- [x] Data Analysis
+- [x] Good Introduction README
 
